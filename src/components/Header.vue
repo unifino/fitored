@@ -10,32 +10,40 @@
 
 <script lang="ts">
 
-import { Options, Vue }                             from "vue-class-component";
+import { defineComponent }                          from "vue";
 import { ActionTypes, MutationTypes, store }        from "../store/store";
 
 // -- =====================================================================================
 
-@Options( {} )
+export default defineComponent ( {
 
 // -- =====================================================================================
 
-export default class Header extends Vue {
-    
-    dialog() {
+    name: "Header",
 
-        const content = `
-        <span class="trendName">Fitored Design & Software Development</span> is an innovative Graphical and Software Developing company,
-            that aims to make digital world a nicer and easier place to live with it.
+// -- =====================================================================================
 
-            Our services vary from Designing Graphical Materials such as Brouchures, Flyers, Websites, Cards, ...,to Web-Appllications as well as Mobile Apps.
+    setup () {
 
-            We make sure that our taste of designing would be poured in our production.
+        function dialog() {
+            const content = `<span class="trendName">Fitored Design & Software Development</span> is an innovative Graphical and Software Developing company,
+                that aims to make digital world a nicer and easier place to live with it.
 
-            Have a Nice World, make it nicer.`;
+                Our services vary from Designing Graphical Materials such as Brouchures, Flyers, Websites, Cards, ...,to Web-Appllications as well as Mobile Apps.
 
-        store.dispatch( ActionTypes.Description, content );
+                We make sure that our taste of designing would be poured in our production.
+
+                Have a Nice World, make it nicer.`;
+            store.dispatch( ActionTypes.Description, content );
+        }
+
+        return { dialog }
 
     }
+
+// -- =====================================================================================
+
+    
 
 
     // dialog() {
@@ -46,7 +54,7 @@ export default class Header extends Vue {
     //     ( this as any ).emitter.emit( "dialoger", content );
     // }
 
-}
+} );
 
 // -- =====================================================================================
 

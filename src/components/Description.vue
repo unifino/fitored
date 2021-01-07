@@ -1,7 +1,7 @@
 <template>
 <div id="panel" ref="d_panel">
 
-    <div class="close unselectable" v-on:click="panelCtr()">x</div>
+    <div class="close unselectable" v-on:click="clearDialog()">x</div>
 
     <div id="content" class="unselectable"></div>
 
@@ -12,47 +12,56 @@
 
 <script lang="ts">
 
-import { Options, Vue }                             from "vue-class-component";
+import { defineComponent }                          from "vue";
 import $                                            from "jquery";
 import { ActionTypes, MutationTypes, store }        from "../store/store";
 
 // -- =====================================================================================
 
-@Options( {} )
+export default defineComponent ( {
+
+    name: "Description",
 
 // -- =====================================================================================
 
-export default class Description extends Vue {
+    setup () {
 
-    mounted() { 
+        function clearDialog() {
+            store.dispatch( ActionTypes.Description, "" );
+        }
+
+        function panelCtr( msg = "" ) {
+
+            const panel = $( "#panel" );
+            const content = $( "#content" );
+            const height = panel.height() || 0;
+
+            panel.animate( 
+                { bottom  : -height/101.1, opacity : 1 }, 
+                400, 
+                () => {
+                    if ( msg ) {
+                        content.html( msg );
+                        panel.animate( { bottom  : 0, opacity : 1 }, 400 );
+                    }
+                } 
+            );
+
+        }
+
+        return { panelCtr, clearDialog }
+        
+    },
+
+// -- =====================================================================================
+
+    mounted () {
         this.panelCtr( "" );
-        // ( this as any ).emitter.on( "dialoger", ( c: string ) => this.panelCtr ( c ) );
-    }
+    },
 
 // -- =====================================================================================
 
-    panelCtr( msg = "" ) {
-
-        const panel = $( "#panel" );
-        const content = $( "#content" );
-        const height = panel.height() || 0;
-
-        panel.animate( { 
-            bottom  : -height/101.1, 
-            opacity : 1
-        }, 400, () => {
-            if ( msg ) {
-                content.html( msg );
-                panel.animate( { 
-                    bottom  : 0, 
-                    opacity : 1
-                }, 400 );
-            }
-        } );
-
-    }
-
-}
+} );
 
 // -- =====================================================================================
 
