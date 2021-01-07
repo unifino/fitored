@@ -25,21 +25,21 @@ type AugmentedActionContext = {
 type State = {
     description: string;
 }
-// .. declare Mutation Options
-export enum MutationTypes {
+// .. declare Mutation-Options
+export enum Mutates {
     Description = "SET_Description"
 }
-// .. declare Mutation
+// .. declare Mutations
 type MyMutations<S = State> = {
-    [ MutationTypes.Description ] ( state: S , payload: string ): void;
+    [ Mutates.Description ] ( state: S , payload: string ): void;
 }
-// .. declare Actions Options
-export enum ActionTypes {
+// .. declare Action-Options
+export enum Acts {
     Description = "SET_Description"
 }
 // .. declare Action Interface
 interface MyActions {
-    [ ActionTypes.Description ] ( {commit}: AugmentedActionContext, payload: string ): void;
+    [ Acts.Description ] ( {commit}: AugmentedActionContext, payload: string ): void;
 }
 // .. declare Getters Options
 type MyGetters = {
@@ -55,14 +55,14 @@ const state: State = {
 }
 // .. define Mutations 
 const mutations: MutationTree<State> & MyMutations = {
-    [ MutationTypes.Description ] ( state: State, payload: string ) {
+    [ Mutates.Description ] ( state: State, payload: string ) {
         state.description = payload;
     }
 }
 // .. define Actions
 const actions: ActionTree<State, State> & MyActions = {
-    [ ActionTypes.Description ] ( {commit}, payload: string ) {
-        commit( MutationTypes.Description, payload )
+    [ Acts.Description ] ( {commit}, payload: string ) {
+        commit( Mutates.Description, payload )
     }
 }
 // .. define Getters

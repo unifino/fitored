@@ -10,8 +10,8 @@
 
 <script lang="ts">
 
-import { defineComponent }                          from "vue";
-import { ActionTypes, MutationTypes, store }        from "../store/store";
+import { defineComponent }              from "vue";
+import * as VX                          from "../store/store";
 
 // -- =====================================================================================
 
@@ -34,7 +34,7 @@ export default defineComponent ( {
                 We make sure that our taste of designing would be poured in our production.
 
                 Have a Nice World, make it nicer.`;
-            store.dispatch( ActionTypes.Description, content );
+            VX.store.dispatch( VX.Acts.Description, content );
         }
 
         return { dialog }

@@ -8,8 +8,8 @@
 
 <script lang="ts">
 
-import { defineComponent }                          from "vue";
-import { ActionTypes, MutationTypes, store }        from "../store/store";
+import { defineComponent }              from "vue";
+import * as VX                          from "../store/store";
 // import $                                            from "jquery";
 
 // -- =====================================================================================

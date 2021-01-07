@@ -12,9 +12,9 @@
 
 <script lang="ts">
 
-import { defineComponent }                          from "vue";
-import $                                            from "jquery";
-import { ActionTypes, MutationTypes, store }        from "../store/store";
+import { defineComponent }              from "vue";
+import $                                from "jquery";
+import * as VX                          from "../store/store";
 
 // -- =====================================================================================
 
@@ -27,7 +27,7 @@ export default defineComponent ( {
     setup () {
 
         function clearDialog() {
-            store.dispatch( ActionTypes.Description, "" );
+            VX.store.dispatch( VX.Acts.Description, "" );
         }
 
         function panelCtr( msg = "" ) {
