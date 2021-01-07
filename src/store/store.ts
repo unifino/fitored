@@ -12,10 +12,10 @@ import {
 
 // .. a bizzare step
 type AugmentedActionContext = {
-    commit<K extends keyof Mutations>(
+    commit<K extends keyof MyMutations>(
         key: K,
-        payload: Parameters<Mutations[K]>[1]
-    ): ReturnType<Mutations[K]>;
+        payload: Parameters<MyMutations[K]>[1]
+    ): ReturnType<MyMutations[K]>;
 } & Omit<ActionContext<State, State>, "commit">;
 
 
@@ -30,7 +30,7 @@ export enum MutationTypes {
     Description = "SET_Description"
 }
 // .. declare Mutation
-type Mutations<S = State> = {
+type MyMutations<S = State> = {
     [ MutationTypes.Description ] ( state: S , payload: string ): void;
 }
 // .. declare Actions Options
@@ -38,11 +38,11 @@ export enum ActionTypes {
     Description = "SET_Description"
 }
 // .. declare Action Interface
-interface Actions {
+interface MyActions {
     [ ActionTypes.Description ] ( {commit}: AugmentedActionContext, payload: string ): void;
 }
 // .. declare Getters Options
-type Getters = {
+type MyGetters = {
     currentDescription( state: State ): string;
 }
 
@@ -54,19 +54,19 @@ const state: State = {
     description: "",
 }
 // .. define Mutations 
-const mutations: MutationTree<State> & Mutations = {
+const mutations: MutationTree<State> & MyMutations = {
     [ MutationTypes.Description ] ( state: State, payload: string ) {
         state.description = payload;
     }
 }
 // .. define Actions
-const actions: ActionTree<State, State> & Actions = {
+const actions: ActionTree<State, State> & MyActions = {
     [ ActionTypes.Description ] ( {commit}, payload: string ) {
         commit( MutationTypes.Description, payload )
     }
 }
 // .. define Getters
-const getters: GetterTree<State, State> & Getters = {
+const getters: GetterTree<State, State> & MyGetters = {
     currentDescription: state => state.description,
 }
 // .. define Store
@@ -83,23 +83,23 @@ type Store =
     Omit<VuexStore<State>, "commit"|"getters"|"dispatch"> 
     &
     {
-        commit<K extends keyof Mutations, P extends Parameters<Mutations[K]>[1]> (
+        commit<K extends keyof MyMutations, P extends Parameters<MyMutations[K]>[1]> (
             key: K,
             payload: P,
             options?: CommitOptions
-        ): ReturnType<Mutations[K]>;
+        ): ReturnType<MyMutations[K]>;
     }
     &
     {
-        getters: { [K in keyof Getters]: ReturnType<Getters[K]> };
+        getters: { [K in keyof MyGetters]: ReturnType<MyGetters[K]> };
     }
     &
     {
-        dispatch<K extends keyof Actions> (
+        dispatch<K extends keyof MyActions> (
             key: K,
-            paylaod: Parameters<Actions[K]>[1],
+            paylaod: Parameters<MyActions[K]>[1],
             opations?: DispatchOptions
-        ): ReturnType<Actions[K]>;
+        ): ReturnType<MyActions[K]>;
     }
     ;
 
