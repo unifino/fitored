@@ -1,0 +1,200 @@
+@font-face {
+    font-family         : 'Oswald';
+    src                 : url('../src/assets/fonts/Oswald.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'Nova Mono';
+    src                 : url('../src/assets/fonts/NovaMono.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+/* @import url('https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap'); */
+@font-face {
+    font-family         : "Farsan";
+    src                 : url("../src/assets/fonts/Farsan.ttf") ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+
+@font-face {
+    font-family         : 'Charmonman';
+    src                 : url('../src/assets/fonts/Charmonman.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'SpecialElite';
+    src                 : url('../src/assets/fonts/SpecialElite.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'MuseoModerno';
+    src                 : url('../src/assets/fonts/MuseoModerno.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'Caveat';
+    src                 : url('../src/assets/fonts/Caveat.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'ShadowsIntoLightTwo';
+    src                 : url('../src/assets/fonts/ShadowsIntoLightTwo.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'Krub';
+    src                 : url('../src/assets/fonts/Krub.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'BalooDa2';
+    src                 : url('../src/assets/fonts/BalooDa2.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'Rancho';
+    src                 : url('../src/assets/fonts/Rancho.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'KaushanScript';
+    src                 : url('../src/assets/fonts/KaushanScript.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'BadScript';
+    src                 : url('../src/assets/fonts/BadScript.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'HomemadeApple';
+    src                 : url('../src/assets/fonts/HomemadeApple.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'ZillaSlabHighlight';
+    src                 : url('../src/assets/fonts/ZillaSlabHighlight.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'PetitFormalScript';
+    src                 : url('../src/assets/fonts/PetitFormalScript.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'Srisakdi';
+    src                 : url('../src/assets/fonts/Srisakdi.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'ComicNeue';
+    src                 : url('../src/assets/fonts/ComicNeue.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'Sriracha';
+    src                 : url('../src/assets/fonts/Sriracha.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'Raleway';
+    src                 : url('../src/assets/fonts/Raleway.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'JosefinSlab';
+    src                 : url('../src/assets/fonts/JosefinSlab.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'PoorStory';
+    src                 : url('../src/assets/fonts/PoorStory.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+
+    /* font-family         : "KaushanScript"; */
+    /* font-family         : "MuseoModerno"; */
+    /* font-family         : "SpecialElite"; */
+    /* font-family         : "Charmonman"; */
+    /* font-family         : "Srisakdi"; */
+    /* font-family         : "PetitFormalScript"; */
+    /* font-family         : "ZillaSlabHighlight"; */
+    /* font-family         : "PoorStory"; */
+    /* font-family         : "JosefinSlab"; */
+    /* font-family         : "Raleway"; */
+    
+    /* font-family         : "Rancho"; */
+    /* font-family         : "BalooDa2"; */
+    /* font-family         : "Krub"; */
+    /* font-family         : "HomemadeApple"; */
+    /* font-family         : "ShadowsIntoLightTwo"; */
+    /* font-family         : "Caveat"; */
+    /* font-family         : "Oswald"; */
+    /* font-family         : "NovaMono"; */
+    /* font-family         : "ComicNeue"; */
+    /* font-family         : "Sriracha"; */
+
+/*                                                                                       */
+
+* {
+    font-family         : "Farsan";
+}
+
+.fx {
+    padding             : 0;
+    margin              : 0;
+    height              : 100%;
+    width               : 100%;
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/*                                                                                       */
+
+body {
+    background-color    : #032029;
+    position            : fixed;
+}
+
+/*                                                                                       */
+
+.trendName {
+    font-weight         : bold;
+    color               : #132025 !important;
+}
+
+.underDev {
+    background-color    : rgb(22, 44, 41);
+    color               : rgb(129, 126, 124);
+    font-size           : .6em;
+    letter-spacing      : 1px;
+    font-family         : "Nova Mono";
+}
