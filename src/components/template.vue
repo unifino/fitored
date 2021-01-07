@@ -8,8 +8,9 @@
 
 <script lang="ts">
 
-import { Options, Vue }                 from "vue-class-component";
-// import $                                from "jquery";
+import { Options, Vue }                             from "vue-class-component";
+import { ActionTypes, MutationTypes, store }        from "../store/store";
+// import $                                            from "jquery";
 
 // -- =====================================================================================
 
@@ -18,6 +19,7 @@ import { Options, Vue }                 from "vue-class-component";
 // -- =====================================================================================
 
 export default class template extends Vue {
+
 
 }
 

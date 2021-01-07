@@ -12,9 +12,9 @@
 
 <script lang="ts">
 
-import { Options, Vue }                 from "vue-class-component";
-import $                                from "jquery";
-import { ActionTypes, MutationTypes, useStore }                     from "../store/index";
+import { Options, Vue }                             from "vue-class-component";
+import $                                            from "jquery";
+import { ActionTypes, MutationTypes, store }        from "../store/store";
 
 // -- =====================================================================================
 
@@ -32,11 +32,6 @@ export default class Description extends Vue {
 // -- =====================================================================================
 
     panelCtr( msg = "" ) {
-
-        const store = useStore();
-        console.log(store.getters.currentDescription);
-        
-
 
         const panel = $( "#panel" );
         const content = $( "#content" );

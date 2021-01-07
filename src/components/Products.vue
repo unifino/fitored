@@ -9,8 +9,8 @@
 
 <script lang="ts">
 
-import { Options, Vue }                 from "vue-class-component";
-// import $                                from "jquery";
+import { Options, Vue }                             from "vue-class-component";
+// import $                                            from "jquery";
 
 // -- =====================================================================================
 

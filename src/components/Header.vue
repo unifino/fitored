@@ -10,8 +10,8 @@
 
 <script lang="ts">
 
-import { Options, Vue }                 from "vue-class-component";
-import { ActionTypes, MutationTypes, useStore }                     from "../store/index";
+import { Options, Vue }                             from "vue-class-component";
+import { ActionTypes, MutationTypes, store }        from "../store/store";
 
 // -- =====================================================================================
 
@@ -20,10 +20,9 @@ import { ActionTypes, MutationTypes, useStore }                     from "../sto
 // -- =====================================================================================
 
 export default class Header extends Vue {
-
-    store =  useStore();
-
+    
     dialog() {
+
         const content = `
         <span class="trendName">Fitored Design & Software Development</span> is an innovative Graphical and Software Developing company,
             that aims to make digital world a nicer and easier place to live with it.
@@ -33,8 +32,9 @@ export default class Header extends Vue {
             We make sure that our taste of designing would be poured in our production.
 
             Have a Nice World, make it nicer.`;
-        this.store.commit( MutationTypes.Description, "hatef" )
-        // ( this as any ).emitter.emit( "dialoger", content );
+
+        store.dispatch( ActionTypes.Description, content );
+
     }
 
 
