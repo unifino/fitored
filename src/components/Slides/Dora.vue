@@ -1,5 +1,5 @@
 <template>
-<div class="slide" >
+<div class="slide" ref="Slide">
 
     <img src="@/assets/pic/b_l_04.jpg" class="column left"  />
     <img src="@/assets/pic/b_r_04.jpg" class="column right" />
@@ -15,6 +15,8 @@
 
 import { defineComponent, ref }         from "vue";
 import * as VX                          from "@/store/store";
+import * as TS                          from "@/types/types";
+import Mixin                            from "@/mixins/mixin";
 // import $                                from "jquery";
 
 // -- =====================================================================================
@@ -29,20 +31,20 @@ export default defineComponent ( {
 
     setup () {
 
-        const screenClass = ref( "no_select maximize" );
+        const product = TS.MyProducts.dora;
+        const Slide = ref<HTMLElement>( null as any );
+        const { slideAnimator } = Mixin();
+
         const context = `
             <p>Dora is a powerfull language learning application, that helps you keep traces of what you've already lerened.</p>
             <p>Types of availbale lesson is vary from text based with audios, video, comics, ..., and you can sort them by level that approprites for you.</p>`;
 
         VX.store.watch(
-            state => state.about.origin, 
-            newVal => {
-                screenClass.value = "no_select ";
-                screenClass.value += newVal !== null ? "minimize" : "maximize";
-            }
+            getters => getters.slideState, 
+            newVal => slideAnimator( newVal, product, Slide ),
         );
 
-        return { screenClass, context }
+        return { Slide, context }
 
     }
 

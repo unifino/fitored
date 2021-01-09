@@ -7,19 +7,11 @@ import {
     CommitOptions,
     DispatchOptions,
     createStore,
-    // createLogger
-}                                       from 'vuex'
+    createLogger
+}                                       from "vuex";
+import * as TS                          from "@/types/types"
 
 // -- ================================================================ declarations =======
-
-// .. declare registered Items
-export enum MyProducts { "fitored", "dora", "n_word", "canzone" }
-
-// ..  declare About Object
-type About = {
-    origin: MyProducts|null;
-    context: string|null;
-}
 
 // .. declare AugmentedActionContext
 type AAC = Omit< ActionContext<State, State>, "commit" > & {
@@ -52,38 +44,35 @@ type Store = Omit< VuexStore<State>, "commit"|"dispatch"|"getters" > & {
 
 // .. declare State
 type State = {
-    about: About;
+    focusedOn: TS.MyProducts;
+    slideState: TS.SlideState;
 }
 
 // .. define  State
 const state: State = {
-
-    about: { origin: null, context: null },
-
+    focusedOn: TS.MyProducts.fitored,
+    slideState: TS.SlideState.stop,
 }
 
 // -- =================================================================== Mutations =======
 
 // .. declare Mutation-Options
 enum Mutates {
-    AboutOrigin  = "(un)SET_Origin_of_Current_About",
-    AboutContext = "(un)SET_Context_of_Current_About",
+    newFocus = "SET_newProduct_on_focus",
+    slideState = "SET_slideState",
 }
 
 // .. declare Mutations
 type MyMutations<S = State> = {
-    [ Mutates.AboutOrigin  ] ( state: S , payload: MyProducts|null ): void;
-    [ Mutates.AboutContext ] ( state: S , payload: string|null ): void;
+    [ Mutates.newFocus ] ( state: S, payload: TS.MyProducts ): void;
+    [ Mutates.slideState ] ( state: S, payload: TS.SlideState ): void;
 }
 
 // .. define Mutations 
 const mutations: MutationTree<State> & MyMutations = {
 
-    // .. Origin of About
-    [ Mutates.AboutOrigin ] ( state, payload ) { state.about.origin = payload },
-
-    // .. Context of About
-    [ Mutates.AboutContext ] ( state, payload ) { state.about.context = payload }
+    [ Mutates.newFocus ] ( state, payload ) { state.focusedOn = payload },
+    [ Mutates.slideState ] ( state, payload ) { state.slideState = payload },
 
 }
 
@@ -91,33 +80,39 @@ const mutations: MutationTree<State> & MyMutations = {
 
 // .. declare Action-Options
 export enum Acts {
-    About = "(un)SET_About_Parameters",
+    newFocus = "SET_newProduct_on_focus",
+    slideState = "SET_slideState",
 }
 
 // .. declare Action Interface
 interface MyActions {
-    [ Acts.About ] ( {commit}: AAC, payload: About|null ): void;
+    [ Acts.newFocus ] ( {commit}: AAC, payload: TS.MyProducts ): void;
+    [ Acts.slideState ] ( {commit}: AAC, payload: TS.SlideState ): void;
 }
 
 // .. define Actions
 const actions: ActionTree<State, State> & MyActions = {
-    // .. change Descriptiotn
-    [ Acts.About ] ( {commit}, payload ) {
-        commit( Mutates.AboutOrigin, payload ? payload.origin : null ),
-        commit( Mutates.AboutContext, payload ? payload.context : null )
-    }
+    
+    // .. focusing on Product
+    [ Acts.newFocus ] ( {commit}, newProduct ) { commit( Mutates.newFocus, newProduct ) },
+
+    // .. changing state of Slide
+    [ Acts.slideState ] ( {commit}, newState ) { commit( Mutates.slideState, newState ) },
+
 }
 
 // -- ===================================================================== Getters =======
 
 // .. declare Getters Options
 type MyGetters = {
-    currentAbout( state: State ): MyProducts|null;
+    focusedOn( state: State ): TS.MyProducts;
+    slideState( state: State ): TS.SlideState;
 }
 
 // .. define Getters
 const getters: GetterTree<State, State> & MyGetters = {
-    currentAbout: state => state.about.origin,
+    focusedOn: state => state.focusedOn,
+    slideState: state => state.slideState,
 }
 
 
@@ -129,7 +124,7 @@ export const store: Store = createStore( {
     mutations,
     actions,
     getters,
-    // plugins: [ createLogger() ]
+    plugins: [ createLogger() ]
 } );
 
 // .. release Store

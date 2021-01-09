@@ -1,5 +1,5 @@
 <template>
-    <img id="logo" class="no_select" src="@/assets/pic/logo.png" v-on:click="about()" />
+    <img class="logo no_select" src="@/assets/pic/logo.png" v-on:click="me( product )" />
 </template>
 
 // -- =====================================================================================
@@ -8,6 +8,8 @@
 
 import { defineComponent }              from "vue";
 import * as VX                          from "@/store/store";
+import * as TS                          from "@/types/types"
+import Mixin                            from "@/mixins/mixin"
 // import $                                from "jquery";
 
 // -- =====================================================================================
@@ -22,28 +24,9 @@ export default defineComponent ( {
 
     setup () {
 
-        function about() {
-
-            const product = VX.MyProducts.fitored;
-
-            const same = VX.store.getters.currentAbout === product;
-            
-            const aboutFitored = same ? null : {
-                origin: product, 
-                context: `
-                    <span class="trendName">Fitored Design & Software Development</span> is an innovative Graphical and Software Developing company,
-                    that aims to make digital world a nicer and easier place to live with it.
-
-                    Our services vary from Designing Graphical Materials such as Brouchures, Flyers, Websites, Cards, ...,to Web-Appllications as well as Mobile Apps.
-
-                    Have a Nice World, make it nicer.`,
-            }
-
-            VX.store.dispatch( VX.Acts.About, aboutFitored );
-
-        }
-
-        return { about }
+        const product = TS.MyProducts.fitored;
+        const { me } = Mixin();
+        return { me, product }
 
     },
 
@@ -61,7 +44,7 @@ export default defineComponent ( {
 
 /*                                                                                       */
 
-#logo {
+.logo {
     background-color    : #03171b;
     border-radius       : 100px;
     width               : 7vw;

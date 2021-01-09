@@ -1,5 +1,5 @@
 <template>
-<div class="appBox" v-on:click="about()">
+<div class="appBox" v-on:click="me( product )">
     <img class="appIcon" src="@/assets/pic/canzone.png" />
     <div class="appTitle">Canzone</div>
 </div>
@@ -11,6 +11,8 @@
 
 import { defineComponent }              from "vue";
 import * as VX                          from "@/store/store";
+import * as TS                          from "@/types/types"
+import Mixin                            from "@/mixins/mixin"
 // import $                                from "jquery";
 
 // -- =====================================================================================
@@ -25,27 +27,9 @@ export default defineComponent ( {
 
     setup () {
 
-        const product = VX.MyProducts.canzone;
-
-        function about() {
-
-            const same = VX.store.getters.currentAbout === product;
-            
-            const aboutFitored = same ? null : {
-                origin: product, 
-                context: `
-                    Canzone is our Music Player Application.
-                    Our aim on desigining it is simplicity anf functionality.
-
-                    <span class='underDev'>&nbsp;Canzone is still under development!&nbsp;</span>`,
-            }
-
-            VX.store.dispatch( VX.Acts.About, aboutFitored );
-
-        }
-
-        return { about }
-
+        const product = TS.MyProducts.canzone;
+        const { me } = Mixin();
+        return { me, product }
 
     }
 

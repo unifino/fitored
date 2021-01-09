@@ -194,8 +194,8 @@ body {
 .underDev {
     background-color    : rgb(22, 44, 41);
     color               : rgb(129, 126, 124);
-    font-size           : .6em;
-    letter-spacing      : 1px;
+    font-size           : .55em;
+    letter-spacing      : .1em;
     font-family         : "Nova Mono";
 }
 
@@ -223,9 +223,11 @@ body {
     background-color    : #161b20;
     height              : 100%;
     width               : 100%;
+    border-radius       : .8vw;
+    overflow            : hidden;
+    position            : absolute;
+    z-index             : 0;
 }
-
-
 
 .slide .column {
     height              : 100%;
@@ -260,4 +262,24 @@ body {
 
 .slide .trendName {
     color               : red;
+}
+
+.slideUp {
+    animation           : slideUp .25s ease-out;
+    animation-fill-mode : both;
+}
+
+.slideDown {
+    animation           : slideDown .25s ease-out;
+    animation-fill-mode : both;
+}
+
+@keyframes slideUp {
+    0%  { transform     : translateY(0)         }
+    100%{ transform     : translateY(-30vw)     }
+}
+
+@keyframes slideDown {
+    0%  { transform     : translateY(-30vw)     }
+    100%{ transform     : translateY(0)         }
 }

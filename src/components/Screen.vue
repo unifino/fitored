@@ -1,12 +1,12 @@
 <template>
 <div id="screen" ref="Screen" class="no_select">
 
-    <Fitored  ref="Fitored"   />
-    <Brochure ref="Brochure"  />
-    <Canzone  ref="Canzone"   />
-    <Dora     ref="Dora"      />
-    <NWord    ref="NWord"     />
-    <Website  ref="Website"   />
+    <brochure />
+    <Canzone  />
+    <Dora     />
+    <NWord    />
+    <Website  />
+    <Fitored  />
 
 </div>
 </template>
@@ -17,6 +17,7 @@
 
 import { defineComponent, ref }         from "vue";
 import * as VX                          from "@/store/store";
+import * as TS                          from "@/types/types"
 // import $                                from "jquery";
 import Brochure                         from "@/components/Slides/Brochure.vue"
 import Canzone                          from "@/components/Slides/Canzone.vue"
@@ -48,36 +49,26 @@ export default defineComponent ( {
 
     setup () {
 
-        const Screen    = ref<HTMLElement|null>( null );
-        const Fitored   = ref<HTMLElement|null>( null );
-        const Brochure  = ref<HTMLElement|null>( null );
-        const Canzone   = ref<HTMLElement|null>( null );
-        const Dora      = ref<HTMLElement|null>( null );
-        const NWord     = ref<HTMLElement|null>( null );
-        const Website   = ref<HTMLElement|null>( null );
-
+        const Screen = ref<HTMLElement>( null as any );
 
         const bounce = function ( state: "minimize" | "maximize" ) {
-            if ( Screen.value ) {
-                Screen.value.className = "no_select ";
-                Screen.value.className += state;
-            }
+            Screen.value.className = "no_select ";
+            Screen.value.className += state;
         }
 
-        const slider = async function ( x: VX.MyProducts|null ) {
-
+        const slider = async function ( x: TS.MyProducts ) {
             bounce( "minimize" );
-            await new Promise( _ => setTimeout( _, 2500) );
+            await new Promise( _ => setTimeout( _, 420) );
+            VX.store.dispatch( VX.Acts.slideState, TS.SlideState.running );
+            await new Promise( _ => setTimeout( _, 550) );
+            VX.store.dispatch( VX.Acts.slideState, TS.SlideState.stop );
+            await new Promise( _ => setTimeout( _, 100) );
             bounce( "maximize" );
-
         }
 
         VX.store.watch(
-            state => state.about.origin, 
-            newVal => {
-                // bounce( newVal !== null ? "minimize" : "maximize" );
-                slider( newVal );
-            }
+            getters => getters.focusedOn,
+            newVal => slider( newVal ),
         );
 
         return { Screen, Fitored, Brochure, Canzone, Dora, NWord, Website }
@@ -103,14 +94,12 @@ export default defineComponent ( {
     height              : 28vw;
     right               : 5vw;
     bottom              : 7vw;
-    border-radius       : .8vw;
     box-shadow          : 0 0 4em 0 #02090f;
     position            : absolute;
-    overflow            : hidden;
 }
 
 .minimize {
-    animation           : minimize .7s;
+    animation           : minimize .5s;
     animation-fill-mode : both;
 }
 
@@ -120,14 +109,14 @@ export default defineComponent ( {
 }
 
 @keyframes minimize {
-    0%  { transform     : scale(1)      }
-    40% { transform     : scale(1.1)    }
-    100%{ transform     : scale(.5)     }
+    0%  { transform     : scale(1)          }
+    40% { transform     : scale(1.1)        }
+    100%{ transform     : scale(.5)         }
 }
 
 @keyframes maximize {
-    0%  { transform     : scale(.5)     }
-    100%{ transform     : scale(1)      }
+    0%  { transform     : scale(.5)         }
+    100%{ transform     : scale(1)          }
 }
 
 
