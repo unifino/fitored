@@ -7,101 +7,130 @@ import {
     CommitOptions,
     DispatchOptions,
     createStore,
-    createLogger
+    // createLogger
 }                                       from 'vuex'
-
-// .. a bizzare step
-type AugmentedActionContext = {
-    commit<K extends keyof MyMutations>(
-        key: K,
-        payload: Parameters<MyMutations[K]>[1]
-    ): ReturnType<MyMutations[K]>;
-} & Omit<ActionContext<State, State>, "commit">;
-
 
 // -- ================================================================ declarations =======
 
+// .. declare registered Items
+export enum MyProducts { "fitored", "dora", "n_word", "canzone" }
+
+// ..  declare About Object
+type About = {
+    origin: MyProducts|null;
+    context: string|null;
+}
+
+// .. declare AugmentedActionContext
+type AAC = Omit< ActionContext<State, State>, "commit" > & {
+    commit <K extends keyof MyMutations> (
+        key: K,
+        payload: Parameters<MyMutations[K]>[1]
+    ): ReturnType<MyMutations[K]>;
+};
+
+// .. decalre Store
+type Store = Omit< VuexStore<State>, "commit"|"dispatch"|"getters" > & {
+
+    commit < K extends keyof MyMutations, P extends Parameters<MyMutations[K]>[1] > (
+        key: K,
+        payload: P,
+        options?: CommitOptions
+    ): ReturnType<MyMutations[K]>;
+
+    dispatch <K extends keyof MyActions > (
+        key: K,
+        paylaod: Parameters<MyActions[K]>[1],
+        opations?: DispatchOptions
+    ): ReturnType<MyActions[K]>;
+
+    getters: { [K in keyof MyGetters]: ReturnType<MyGetters[K]> };
+
+};
+
+// -- ======================================================================= State =======
+
 // .. declare State
 type State = {
-    description: string;
+    about: About;
 }
+
+// .. define  State
+const state: State = {
+
+    about: { origin: null, context: null },
+
+}
+
+// -- =================================================================== Mutations =======
+
 // .. declare Mutation-Options
-export enum Mutates {
-    Description = "SET_Description"
+enum Mutates {
+    AboutOrigin  = "(un)SET_Origin_of_Current_About",
+    AboutContext = "(un)SET_Context_of_Current_About",
 }
+
 // .. declare Mutations
 type MyMutations<S = State> = {
-    [ Mutates.Description ] ( state: S , payload: string ): void;
-}
-// .. declare Action-Options
-export enum Acts {
-    Description = "SET_Description"
-}
-// .. declare Action Interface
-interface MyActions {
-    [ Acts.Description ] ( {commit}: AugmentedActionContext, payload: string ): void;
-}
-// .. declare Getters Options
-type MyGetters = {
-    currentDescription( state: State ): string;
+    [ Mutates.AboutOrigin  ] ( state: S , payload: MyProducts|null ): void;
+    [ Mutates.AboutContext ] ( state: S , payload: string|null ): void;
 }
 
-
-// -- ================================================================= definations =======
-
-// .. defien  State
-const state: State = {
-    description: "",
-}
 // .. define Mutations 
 const mutations: MutationTree<State> & MyMutations = {
-    [ Mutates.Description ] ( state: State, payload: string ) {
-        state.description = payload;
-    }
+
+    // .. Origin of About
+    [ Mutates.AboutOrigin ] ( state, payload ) { state.about.origin = payload },
+
+    // .. Context of About
+    [ Mutates.AboutContext ] ( state, payload ) { state.about.context = payload }
+
 }
+
+// -- ===================================================================== Actions =======
+
+// .. declare Action-Options
+export enum Acts {
+    About = "(un)SET_About_Parameters",
+}
+
+// .. declare Action Interface
+interface MyActions {
+    [ Acts.About ] ( {commit}: AAC, payload: About|null ): void;
+}
+
 // .. define Actions
 const actions: ActionTree<State, State> & MyActions = {
-    [ Acts.Description ] ( {commit}, payload: string ) {
-        commit( Mutates.Description, payload )
+    // .. change Descriptiotn
+    [ Acts.About ] ( {commit}, payload ) {
+        commit( Mutates.AboutOrigin, payload ? payload.origin : null ),
+        commit( Mutates.AboutContext, payload ? payload.context : null )
     }
 }
+
+// -- ===================================================================== Getters =======
+
+// .. declare Getters Options
+type MyGetters = {
+    currentAbout( state: State ): MyProducts|null;
+}
+
 // .. define Getters
 const getters: GetterTree<State, State> & MyGetters = {
-    currentDescription: state => state.description,
+    currentAbout: state => state.about.origin,
 }
-// .. define Store
+
+
+// -- ======================================================================= Setup =======
+
+// .. SETUP STORE
 export const store: Store = createStore( {
     state,
     mutations,
     actions,
     getters,
-    plugins: [ createLogger() ]
+    // plugins: [ createLogger() ]
 } );
-
-// .. SETUP STORE
-type Store = 
-    Omit<VuexStore<State>, "commit"|"getters"|"dispatch"> 
-    &
-    {
-        commit<K extends keyof MyMutations, P extends Parameters<MyMutations[K]>[1]> (
-            key: K,
-            payload: P,
-            options?: CommitOptions
-        ): ReturnType<MyMutations[K]>;
-    }
-    &
-    {
-        getters: { [K in keyof MyGetters]: ReturnType<MyGetters[K]> };
-    }
-    &
-    {
-        dispatch<K extends keyof MyActions> (
-            key: K,
-            paylaod: Parameters<MyActions[K]>[1],
-            opations?: DispatchOptions
-        ): ReturnType<MyActions[K]>;
-    }
-    ;
 
 // .. release Store
 // export function useStore () { return store; }

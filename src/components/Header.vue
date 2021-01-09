@@ -1,7 +1,11 @@
 <template>
-<div id="topBox">
+<div id="topBox" class="no_select">
 
-    <img src="../assets/pic/logo.png" id="logo" v-on:click="dialog()" />
+    <Fitored />
+    <div style="margin-right: 3vw" />
+    <Dora />
+    <NWord />
+    <Canzone />
 
 </div>
 </template>
@@ -11,7 +15,11 @@
 <script lang="ts">
 
 import { defineComponent }              from "vue";
-import * as VX                          from "../store/store";
+import * as VX                          from "@/store/store";
+import Fitored                          from "@/components/Products/Fitored.vue"
+import Dora                             from "@/components/Products/Dora.vue"
+import NWord                            from "@/components/Products/NWord.vue"
+import Canzone                          from "@/components/Products/Canzone.vue"
 
 // -- =====================================================================================
 
@@ -23,36 +31,14 @@ export default defineComponent ( {
 
 // -- =====================================================================================
 
-    setup () {
-
-        function dialog() {
-            const content = `<span class="trendName">Fitored Design & Software Development</span> is an innovative Graphical and Software Developing company,
-                that aims to make digital world a nicer and easier place to live with it.
-
-                Our services vary from Designing Graphical Materials such as Brouchures, Flyers, Websites, Cards, ...,to Web-Appllications as well as Mobile Apps.
-
-                We make sure that our taste of designing would be poured in our production.
-
-                Have a Nice World, make it nicer.`;
-            VX.store.dispatch( VX.Acts.Description, content );
-        }
-
-        return { dialog }
-
-    }
+    components: {
+        Fitored,
+        Dora,
+        NWord,
+        Canzone
+    },
 
 // -- =====================================================================================
-
-    
-
-
-    // dialog() {
-    //     const content = `
-    //         <p>Canzone is our Music Player Application.
-    //         Our aim on desigining it is simplicity anf functionality.</p>
-    //         <span class='underDev'>&nbsp;Canzone is still under development!&nbsp;</span>`;
-    //     ( this as any ).emitter.emit( "dialoger", content );
-    // }
 
 } );
 
@@ -71,19 +57,6 @@ export default defineComponent ( {
     display             : flex;
     justify-content     : center;
     align-items         : center;
-}
-
-#logo {
-    background-color    : #03171b;
-    border-radius       : 100px;
-    width               : 7vw;
-    box-shadow          : 0 0 10px 1px #213f4d;
-    cursor              : pointer;
-    float               : left;
-}
-
-#logo:hover {
-    box-shadow          : 0 0 7px 0px #213f4d;
 }
 
 </style>

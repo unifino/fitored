@@ -168,7 +168,7 @@
     width               : 100%;
 }
 
-.unselectable {
+.no_select {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -188,7 +188,7 @@ body {
 
 .trendName {
     font-weight         : bold;
-    color               : #132025 !important;
+    color               : #132025;
 }
 
 .underDev {
@@ -197,4 +197,67 @@ body {
     font-size           : .6em;
     letter-spacing      : 1px;
     font-family         : "Nova Mono";
+}
+
+/*                                                                                       */
+
+.appIcon {
+    width               : 4vw;
+    margin              : auto;
+    height              : auto;
+    cursor              : pointer;
+    display             : block;
+}
+
+.appTitle{
+    color               : white;
+    font-size           : 1.1vw;
+    display             : block;
+    padding-top         : .2vw;
+    margin-bottom       : -1.6vw;
+}
+
+/*                                                                                       */
+
+.slide {
+    background-color    : #161b20;
+    height              : 100%;
+    width               : 100%;
+}
+
+
+
+.slide .column {
+    height              : 100%;
+    object-fit          : cover;
+}
+
+.slide .left {
+    float               : left;
+    width               : 30%;
+}
+
+.slide .center {
+    width               : 56%;
+    float               : left;
+    display             : flex;
+    justify-content     : center;
+    align-items         : center;
+}
+
+.slide .right {
+    width               : 14%;
+    float               : right;
+}
+
+.slide .content {
+    color               : whitesmoke;
+    font-size           : 1.14vw;
+    line-height         : 1.9vw;
+    padding             : 0 3.5vw 1vw 3.5vw;
+    text-align          : justify;
+}
+
+.slide .trendName {
+    color               : red;
 }

@@ -1,9 +1,8 @@
 <template>
 <div id="panel" ref="d_panel">
 
-    <div class="close unselectable" v-on:click="clearDialog()">x</div>
-
-    <div id="content" class="unselectable"></div>
+    <div class="close no_select" v-on:click="clearDialog()">x</div>
+    <div id="content" class="no_select"></div>
 
 </div>
 </template>
@@ -14,40 +13,52 @@
 
 import { defineComponent }              from "vue";
 import $                                from "jquery";
-import * as VX                          from "../store/store";
+import * as VX                          from "@/store/store";
 
 // -- =====================================================================================
 
 export default defineComponent ( {
 
-    name: "Description",
+    name: "Dialog",
 
 // -- =====================================================================================
 
     setup () {
 
-        function clearDialog() {
-            VX.store.dispatch( VX.Acts.Description, "" );
-        }
+        const clearDialog = () => VX.store.dispatch( VX.Acts.About, null );
 
-        function panelCtr( msg = "" ) {
-
+        function panelCtr( msg: string|null ) {
+            
             const panel = $( "#panel" );
+            
+            // .. duration of First Animation base on if Panel already is active
+            const duration = ( !panel.is(':hidden') ) ? 400 : 800;
+
+            // panel.show();
             const content = $( "#content" );
             const height = panel.height() || 0;
 
-            panel.animate( 
-                { bottom  : -height/101.1, opacity : 1 }, 
-                400, 
+            // .. First (Mandatory) Animation
+            panel.animate(
+                { bottom: -height }, 
+                duration, 
                 () => {
                     if ( msg ) {
                         content.html( msg );
-                        panel.animate( { bottom  : 0, opacity : 1 }, 400 );
+                        panel.css( { bottom: -Number( panel.height() ) } );
+                        // .. Second (Optional) Animation
+                        panel.animate( { bottom: 0 }, 400 );
                     }
+                    else panel.hide();
                 } 
             );
 
         }
+
+        VX.store.watch(
+            state => state.about.origin, 
+            () => panelCtr( VX.store.state.about.context )
+        );
 
         return { panelCtr, clearDialog }
         
@@ -75,13 +86,12 @@ export default defineComponent ( {
 
 #panel {
     background-color    : teal;
-    bottom              : 0;
+    bottom              : -100%;
     left                : 24vw;
     max-height          : 30vw;
     border-radius       : 7px 7px 0 0;
     position            : absolute;
     box-shadow          : 0 0 10px 0px black;
-    opacity             : 0;
 }
 
 #content {

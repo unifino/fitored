@@ -1,8 +1,8 @@
 <template>
 <div>
 
-    <div id="wallpapaer" class="fx"></div>
-    <img src="../assets/pic/bg.png" id="beauty" />
+    <div id="wallpapaer" class="fx no_select"></div>
+    <img src="../assets/pic/bg.png" id="beauty" class="no_select" />
 
 </div>
 </template>
@@ -39,10 +39,12 @@ export default defineComponent ( {
 }
 
 #beauty {
-    left: 2%;
-    height: 24vw;
-    bottom: 0;
-    position: absolute;
+    left                : 2%;
+    height              : 24vw;
+    bottom              : 0;
+    position            : absolute;
+    z-index             : -1;
+
 }
 
 </style>

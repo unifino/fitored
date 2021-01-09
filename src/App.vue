@@ -3,7 +3,7 @@
 
     <BG />
     <Header />
-    <Description />
+    <Screen />
     <Footer />
 
 </div>
@@ -15,28 +15,28 @@
 
 // -- =====================================================================================
 
-import { Options, Vue }                 from "vue-class-component";
-import BG                               from "./components/BG.vue"
-import Header                           from "./components/Header.vue"
-import Description                      from "./components/Description.vue"
-import Footer                           from "./components/Footer.vue"
+import { defineComponent }              from "vue";
+import BG                               from "@/components/BG.vue"
+import Header                           from "@/components/Header.vue"
+import Screen                           from "@/components/Screen.vue"
+import Footer                           from "@/components/Footer.vue"
 
 // -- =====================================================================================
 
-@Options({
+export default defineComponent ( {
+
+    name: "App",
+
+// -- =====================================================================================
+
     components: {
         BG,
         Header,
-        Description,
+        Screen,
         Footer
     }
-})
 
-// -- =====================================================================================
-
-export default class App extends Vue {
-
-}
+} );
 
 // -- =====================================================================================
 
