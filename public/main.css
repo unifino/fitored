@@ -306,7 +306,7 @@ body {
 
 @keyframes pulseNormal {
     0%  { transform     : scale(1)         }
-    50% { transform     : scale(1.09)      }
+    50% { transform     : scale(1.085)     }
     100%{ transform     : scale(1)         }
 }
 
