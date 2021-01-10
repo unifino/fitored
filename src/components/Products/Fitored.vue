@@ -1,16 +1,17 @@
 <template>
-    <img class="logo no_select" src="@/assets/pic/logo.png" v-on:click="me( product )" />
+<div class="logoBox"  v-on:click="click()">
+    <img class="logo no_select" src="@/assets/pic/logo.png" ref="butt" />
+</div>
 </template>
 
 // -- =====================================================================================
 
 <script lang="ts">
 
-import { defineComponent }              from "vue";
-import * as VX                          from "@/store/store";
+import { defineComponent, ref }         from "vue";
+// import * as VX                          from "@/store/store";
 import * as TS                          from "@/types/types"
 import Mixin                            from "@/mixins/mixin"
-// import $                                from "jquery";
 
 // -- =====================================================================================
 
@@ -24,9 +25,17 @@ export default defineComponent ( {
 
     setup () {
 
+        const { me, pulser } = Mixin();
+
         const product = TS.MyProducts.fitored;
-        const { me } = Mixin();
-        return { me, product }
+        const butt = ref<HTMLElement>( null as any );
+        
+        const click = function () {
+            pulser( butt );
+            me( product );
+        }
+
+        return { butt, click }
 
     },
 

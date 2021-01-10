@@ -25,6 +25,7 @@ import Dora                             from "@/components/Slides/Dora.vue"
 import Fitored                          from "@/components/Slides/Fitored.vue"
 import NWord                            from "@/components/Slides/NWord.vue"
 import Website                          from "@/components/Slides/Website.vue"
+import Mixin                            from "@/mixins/mixin"
 
 // -- =====================================================================================
 
@@ -50,15 +51,11 @@ export default defineComponent ( {
     setup () {
 
         const Screen = ref<HTMLElement>( null as any );
+        const { pulser } = Mixin();
 
         const bounce = function ( state: "minimize" | "maximize" ) {
             Screen.value.className = "no_select ";
             Screen.value.className += state;
-        }
-
-        const pulse = function () {
-            Screen.value.className += " pulse";
-            setTimeout( () => Screen.value.className = "no_select", 500 );
         }
 
         const slider = async function ( x: TS.MyProducts ) {
@@ -78,7 +75,7 @@ export default defineComponent ( {
 
         VX.store.watch(
             getters => getters.pulse,
-            () => pulse(),
+            () => pulser( Screen ),
         );
 
         return { Screen, Fitored, Brochure, Canzone, Dora, NWord, Website }
@@ -118,11 +115,6 @@ export default defineComponent ( {
     animation-fill-mode : both;
 }
 
-.pulse {
-    animation           : pulse .4s;
-    animation-fill-mode : both;
-}
-
 @keyframes minimize {
     0%  { transform     : scale(1)          }
     40% { transform     : scale(1.1)        }
@@ -134,11 +126,6 @@ export default defineComponent ( {
     100%{ transform     : scale(1)          }
 }
 
-@keyframes pulse {
-    0%  { transform     : scale(1)         }
-    50% { transform     : scale(1.02)      }
-    100%{ transform     : scale(1)         }
-}
 
 /*                                                                                       */
 

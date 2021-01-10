@@ -210,11 +210,13 @@ body {
 }
 
 .appTitle{
-    color               : white;
+    color               : #b4b4b4;
     font-size           : 1.1vw;
     display             : block;
     padding-top         : .2vw;
     margin-bottom       : -1.6vw;
+    font-family         : "Farsan";
+
 }
 
 /*                                                                                       */
@@ -282,4 +284,40 @@ body {
 @keyframes slideDown {
     0%  { transform     : translateY(-30vw)     }
     100%{ transform     : translateY(0)         }
+}
+
+/* pulse for screen */
+.pulse {
+    animation           : pulseSmall .4s;
+    animation-fill-mode : both;
+}
+
+@keyframes pulseSmall {
+    0%  { transform     : scale(1)         }
+    50% { transform     : scale(1.02)      }
+    100%{ transform     : scale(1)         }
+}
+
+/* pulse for button */
+.appBox .pulse {
+    animation           : pulseNormal .4s;
+    animation-fill-mode : both;
+}
+
+@keyframes pulseNormal {
+    0%  { transform     : scale(1)         }
+    50% { transform     : scale(1.09)      }
+    100%{ transform     : scale(1)         }
+}
+
+/* pulse for LOGO */
+.logoBox .pulse {
+    animation           : pulseMiddle .4s;
+    animation-fill-mode : both;
+}
+
+@keyframes pulseMiddle {
+    0%  { transform     : scale(1)         }
+    50% { transform     : scale(1.033)     }
+    100%{ transform     : scale(1)         }
 }

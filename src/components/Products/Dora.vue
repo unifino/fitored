@@ -1,6 +1,6 @@
 <template>
-<div class="appBox" v-on:click="me( product )">
-    <img class="appIcon" src="@/assets/pic/dora.png" />
+<div class="appBox" v-on:click="click()" >
+    <img class="appIcon" src="@/assets/pic/dora.png" ref="butt"/>
     <div class="appTitle">Dora</div>
 </div>
 </template>
@@ -9,7 +9,7 @@
 
 <script lang="ts">
 
-import { defineComponent }              from "vue";
+import { defineComponent, ref }         from "vue";
 import * as VX                          from "@/store/store";
 import * as TS                          from "@/types/types"
 import Mixin                            from "@/mixins/mixin"
@@ -27,9 +27,17 @@ export default defineComponent ( {
 
     setup () {
 
+        const { me, pulser } = Mixin();
+
         const product = TS.MyProducts.dora;
-        const { me } = Mixin();
-        return { me, product }
+        const butt = ref<HTMLElement>( null as any );
+        
+        const click = function () {
+            pulser( butt );
+            me( product );
+        }
+
+        return { butt, click }
 
     }
 

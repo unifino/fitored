@@ -38,10 +38,25 @@ export default function () {
 
     }
     
+    // .. pulse animation on Button|Element
+    const pulser = function ( element: { value: HTMLElement } ) {
+        let preClass = element.value.className;
+        // .. trim for screen
+        preClass = preClass.replace( /minimize/g, "" );
+        preClass = preClass.replace( /maximize/g, "" );
+        // .. trim last state
+        preClass = preClass.replace( /pulse/g, "" );
+        // .. add pulse effect
+        element.value.className = preClass + " pulse";
+        // .. remove pulse effect
+        setTimeout( () => element.value.className = preClass, 500 );
+    }
+
     // .. register
     return {
         me,
         slideAnimator,
+        pulser
 	}
 
 }
