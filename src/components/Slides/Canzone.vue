@@ -37,7 +37,7 @@ export default defineComponent ( {
     
         const context = `
             <p>Canzone is our Music Player Application.
-            Our aim on desigining it is simplicity anf functionality.</p>
+            Our aim on designing it is simplicity anf functionality.</p>
 
             <span class='underDev'>&nbsp;Canzone is still under development!&nbsp;</span>`;
 

@@ -36,7 +36,7 @@ export default defineComponent ( {
         const { slideAnimator } = Mixin();
 
         const context = `
-            <p>n-Word is a new flashCard application, it provides many functions to capture and practice informations that you need.</p>
+            <p>n-Word is a new flashCard application, it provides many functions to capture and practice information that you need.</p>
 
             <span class="underDev">&nbsp;n-Word is still under development!&nbsp;</span>`;
 

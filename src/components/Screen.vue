@@ -56,6 +56,11 @@ export default defineComponent ( {
             Screen.value.className += state;
         }
 
+        const pulse = function () {
+            Screen.value.className += " pulse";
+            setTimeout( () => Screen.value.className = "no_select", 500 );
+        }
+
         const slider = async function ( x: TS.MyProducts ) {
             bounce( "minimize" );
             await new Promise( _ => setTimeout( _, 420) );
@@ -69,6 +74,11 @@ export default defineComponent ( {
         VX.store.watch(
             getters => getters.focusedOn,
             newVal => slider( newVal ),
+        );
+
+        VX.store.watch(
+            getters => getters.pulse,
+            () => pulse(),
         );
 
         return { Screen, Fitored, Brochure, Canzone, Dora, NWord, Website }
@@ -108,6 +118,11 @@ export default defineComponent ( {
     animation-fill-mode : both;
 }
 
+.pulse {
+    animation           : pulse .4s;
+    animation-fill-mode : both;
+}
+
 @keyframes minimize {
     0%  { transform     : scale(1)          }
     40% { transform     : scale(1.1)        }
@@ -119,6 +134,11 @@ export default defineComponent ( {
     100%{ transform     : scale(1)          }
 }
 
+@keyframes pulse {
+    0%  { transform     : scale(1)         }
+    50% { transform     : scale(1.02)      }
+    100%{ transform     : scale(1)         }
+}
 
 /*                                                                                       */
 

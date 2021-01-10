@@ -36,8 +36,8 @@ export default defineComponent ( {
         const { slideAnimator } = Mixin();
 
         const context = `
-            <p>Dora is a powerfull language learning application, that helps you keep traces of what you've already lerened.</p>
-            <p>Types of availbale lesson is vary from text based with audios, video, comics, ..., and you can sort them by level that approprites for you.</p>`;
+            <p>Dora is a powerful language learning application, that helps you keep traces of what you've already learned.</p>
+            <p>Types of available lesson is vary from text based with audios, video, comics, ..., and you can sort them by level that appropriates for you.</p>`;
 
         VX.store.watch(
             getters => getters.slideState, 

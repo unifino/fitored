@@ -1,7 +1,7 @@
 <template>
 <div>
 
-    <div id="wallpapaer" class="fx no_select"></div>
+    <div id="wallpaper" class="fx no_select"></div>
     <img src="../assets/pic/bg.png" id="beauty" class="no_select" />
 
 </div>
@@ -29,7 +29,7 @@ export default defineComponent ( {
 
 <style scoped>
 
-#wallpapaer {
+#wallpaper {
     background-image    : url( "../assets/pic/bg-r.png" );
     background-position : left bottom;
     background-repeat   : repeat;

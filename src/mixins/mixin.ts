@@ -4,14 +4,14 @@ import * as TS                          from "@/types/types"
 
 export default function () {
 
-    // .. foucsing on a Product
+    // .. focusing on a Product
     const me = function ( product: TS.MyProducts ) {
-        if ( VX.store.getters.slideState === TS.SlideState.stop ) {
-            if ( VX.store.getters.focusedOn !== product ) console.log("diff");
-            else console.log("same");
-            VX.store.dispatch( VX.Acts.newFocus, product );
-        }
-        else console.log("wait");
+        // .. prevent conflict animations
+        if ( VX.store.getters.slideState === TS.SlideState.running ) return 0;
+        // .. product is same: screen pulsing animation
+        if ( VX.store.getters.focusedOn === product ) VX.store.dispatch( VX.Acts.pulse )
+        // .. product changing: changing slide animation
+        else VX.store.dispatch( VX.Acts.newFocus, product );
     }
 
     // .. slide Control

@@ -36,7 +36,7 @@ export default defineComponent ( {
         const { slideAnimator } = Mixin();
 
         const context = `
-            <p><span class="trendName">Fitored</span> Designs elegent Brochures and E-Flyers upon demands of its customers.</p>
+            <p><span class="trendName">Fitored</span> Designs elegant Brochures and E-Flyers upon demands of its customers.</p>
             <p>You can make a request for your projects.</p>`;
 
         VX.store.watch(

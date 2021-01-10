@@ -38,7 +38,7 @@ export default defineComponent ( {
         const context = `
             <p><span class="trendName">Fitored Design & Software Development</span> is an innovative Graphical and Software Developing company,
             that aims to make digital world a nicer and easier place to live with it.</p>
-            Our services includes Designing Brouchures, Websites, Apps, ...`;
+            Our services includes Designing Brochures, Websites, Apps, ...`;
 
         VX.store.watch(
             getters => getters.slideState, 
