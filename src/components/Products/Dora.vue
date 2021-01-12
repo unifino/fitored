@@ -1,6 +1,6 @@
 <template>
-<div class="appBox" v-on:click="click()" >
-    <img class="appIcon" src="@/assets/pic/dora.png" ref="butt"/>
+<div class="appBox" v-on:click="click()">
+    <img class="appIcon" src="@/assets/pic/dora.png" ref="butt" />
     <div class="appTitle">Dora</div>
 </div>
 </template>
@@ -13,7 +13,6 @@ import { defineComponent, ref }         from "vue";
 import * as VX                          from "@/store/store";
 import * as TS                          from "@/types/types"
 import Mixin                            from "@/mixins/mixin"
-// import $                                from "jquery";
 
 // -- =====================================================================================
 

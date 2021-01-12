@@ -1,4 +1,3 @@
-import { ref, computed }                from "vue";
 import * as VX                          from "@/store/store";
 import * as TS                          from "@/types/types"
 
@@ -7,7 +6,7 @@ export default function () {
     // .. focusing on a Product
     const me = function ( product: TS.MyProducts ) {
         // .. prevent conflict animations
-        if ( VX.store.getters.slideState === TS.SlideState.running ) return 0;
+        if ( VX.store.getters.slideState !== TS.SlideAnimationState.stop ) return 0;
         // .. product is same: screen pulsing animation
         if ( VX.store.getters.focusedOn === product ) VX.store.dispatch( VX.Acts.pulse )
         // .. product changing: changing slide animation
@@ -15,26 +14,44 @@ export default function () {
     }
 
     // .. slide Control
-    const slideAnimator = function (
-        state: TS.SlideState, 
+    const slideAnimator = async function (
+        state: TS.SlideAnimationState, 
         product: TS.MyProducts, 
         slide: { value: HTMLElement }
     ) {
-
-        if ( state === TS.SlideState.running ) {
+        // .. phase 1
+        if ( state === TS.SlideAnimationState.start ) {
             if ( product === VX.store.getters.focusedOn ) {
+                // .. sliding up
                 slide.value.className = "slide slideUp";
-                setTimeout( () => slide.value.style.zIndex = "3", 300 );
-                setTimeout( () => slide.value.className = "slide slideDown", 313 );
-                setTimeout( () => slide.value.style.zIndex = "1", 700 );
+                // .. wait for sliding up
+                await new Promise( _ => setTimeout( _, 300) );
+                slide.value.style.zIndex = "3";
+                // .. trigger sliding down
+                VX.store.dispatch( VX.Acts.slideState, TS.SlideAnimationState.up );
             }
         }
-
-        if ( state === TS.SlideState.stop ) {
-            if ( product !== VX.store.getters.focusedOn ) {
-                slide.value.style.zIndex = "0";
+        // .. phase 2
+        if ( state === TS.SlideAnimationState.up ) {
+            if ( product === VX.store.getters.focusedOn ) {
+                // .. sliding down
+                slide.value.className = "slide slideDown";
+                // .. wait for sliding down
+                await new Promise( _ => setTimeout( _, 300+13) );
+                slide.value.style.zIndex = "1";
+                // .. trigger end of sliding ( it is NOT the END! )
+                VX.store.dispatch( VX.Acts.slideState, TS.SlideAnimationState.down );
             }
         }
+        // .. phase 3
+        if ( state === TS.SlideAnimationState.down ) {
+            // .. setting zIndexes
+            slide.value.style.zIndex = product === VX.store.getters.focusedOn ? "1" : "0";
+        }
+        // .. phase 4
+        // if ( state === TS.SlideAnimationState.stop ) {
+        //     console.log("end");
+        // }
 
     }
     

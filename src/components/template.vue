@@ -10,7 +10,6 @@
 
 import { defineComponent }              from "vue";
 import * as VX                          from "@/store/store";
-// import $                                from "jquery";
 
 // -- =====================================================================================
 

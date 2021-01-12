@@ -3,6 +3,7 @@
 
     <BG />
     <Header />
+    <Options />
     <Screen />
     <Footer />
 
@@ -19,6 +20,7 @@ import { defineComponent }              from "vue";
 import BG                               from "@/components/BG.vue"
 import Header                           from "@/components/Header.vue"
 import Screen                           from "@/components/Screen.vue"
+import Options                          from "@/components/Options.vue"
 import Footer                           from "@/components/Footer.vue"
 
 // -- =====================================================================================
@@ -33,6 +35,7 @@ export default defineComponent ( {
         BG,
         Header,
         Screen,
+        Options,
         Footer
     }
 

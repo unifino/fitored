@@ -18,7 +18,6 @@
 import { defineComponent, ref }         from "vue";
 import * as VX                          from "@/store/store";
 import * as TS                          from "@/types/types"
-// import $                                from "jquery";
 import Brochure                         from "@/components/Slides/Brochure.vue"
 import Canzone                          from "@/components/Slides/Canzone.vue"
 import Dora                             from "@/components/Slides/Dora.vue"
@@ -59,13 +58,20 @@ export default defineComponent ( {
         }
 
         const slider = async function ( x: TS.MyProducts ) {
+            // .. minimizing
             bounce( "minimize" );
-            await new Promise( _ => setTimeout( _, 420) );
-            VX.store.dispatch( VX.Acts.slideState, TS.SlideState.running );
-            await new Promise( _ => setTimeout( _, 550) );
-            VX.store.dispatch( VX.Acts.slideState, TS.SlideState.stop );
-            await new Promise( _ => setTimeout( _, 100) );
+            // .. wait for minimizing
+            await new Promise( _ => setTimeout( _, 500-80 ) );
+            // .. trigger sliding up
+            VX.store.dispatch( VX.Acts.slideState, TS.SlideAnimationState.start );
+            // .. wait for sliding up & sliding down
+            await new Promise( _ => setTimeout( _, 500+50 ) );
+            // .. maximizing
             bounce( "maximize" );
+            // .. wait for maximizing
+            await new Promise( _ => setTimeout( _, 300 ) );
+            // .. register end of animation
+            VX.store.dispatch( VX.Acts.slideState, TS.SlideAnimationState.stop );
         }
 
         VX.store.watch(

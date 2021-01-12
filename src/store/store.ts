@@ -7,7 +7,7 @@ import {
     CommitOptions,
     DispatchOptions,
     createStore,
-    createLogger
+    // createLogger
 }                                       from "vuex";
 import * as TS                          from "@/types/types"
 
@@ -45,14 +45,14 @@ type Store = Omit< VuexStore<State>, "commit"|"dispatch"|"getters" > & {
 // .. declare State
 type State = {
     focusedOn: TS.MyProducts;
-    slideState: TS.SlideState;
+    slideState: TS.SlideAnimationState;
     pulse: boolean;
 }
 
 // .. define  State
 const state: State = {
     focusedOn: TS.MyProducts.fitored,
-    slideState: TS.SlideState.stop,
+    slideState: TS.SlideAnimationState.stop,
     pulse: false,
 }
 
@@ -68,7 +68,7 @@ enum Mutates {
 // .. declare Mutations
 type MyMutations<S = State> = {
     [ Mutates.newFocus ] ( state: S, payload: TS.MyProducts ): void;
-    [ Mutates.slideState ] ( state: S, payload: TS.SlideState ): void;
+    [ Mutates.slideState ] ( state: S, payload: TS.SlideAnimationState ): void;
     [ Mutates.pulse ] ( state: S ): void;
 }
 
@@ -93,7 +93,7 @@ export enum Acts {
 // .. declare Action Interface
 interface MyActions {
     [ Acts.newFocus ] ( {commit}: AAC, payload: TS.MyProducts ): void;
-    [ Acts.slideState ] ( {commit}: AAC, payload: TS.SlideState ): void;
+    [ Acts.slideState ] ( {commit}: AAC, payload: TS.SlideAnimationState ): void;
     [ Acts.pulse ] ( {commit}: AAC ): void;
 }
 
@@ -116,7 +116,7 @@ const actions: ActionTree<State, State> & MyActions = {
 // .. declare Getters Options
 type MyGetters = {
     focusedOn( state: State ): TS.MyProducts;
-    slideState( state: State ): TS.SlideState;
+    slideState( state: State ): TS.SlideAnimationState;
     pulse( state: State ): boolean;
 }
 
@@ -136,7 +136,7 @@ export const store: Store = createStore( {
     mutations,
     actions,
     getters,
-    plugins: [ createLogger() ]
+    // plugins: [ createLogger() ]
 } );
 
 // .. release Store
