@@ -9,7 +9,6 @@
 <script lang="ts">
 
 import { defineComponent, ref }         from "vue";
-// import * as VX                          from "@/store/store";
 import * as TS                          from "@/types/types"
 import Mixin                            from "@/mixins/mixin"
 

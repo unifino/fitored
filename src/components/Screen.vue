@@ -58,6 +58,8 @@ export default defineComponent ( {
         }
 
         const slider = async function ( x: TS.MyProducts ) {
+            // .. register beginning of animation
+            VX.store.dispatch( VX.Acts.slideState, TS.SlideAnimationState.waiting );
             // .. minimizing
             bounce( "minimize" );
             // .. wait for minimizing

@@ -1,17 +1,4 @@
 @font-face {
-    font-family         : 'Oswald';
-    src                 : url('../src/assets/fonts/Oswald.ttf') ;
-    font-weight         : normal;
-    font-style          : normal;
-}
-@font-face {
-    font-family         : 'Nova Mono';
-    src                 : url('../src/assets/fonts/NovaMono.ttf') ;
-    font-weight         : normal;
-    font-style          : normal;
-}
-/* @import url('https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap'); */
-@font-face {
     font-family         : "Farsan";
     src                 : url("../src/assets/fonts/Farsan.ttf") ;
     font-weight         : normal;
@@ -133,6 +120,111 @@
     font-style          : normal;
 }
 
+
+@font-face {
+    font-family         : 'AllertaStencil';
+    src                 : url('../src/assets/fonts/AllertaStencil.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'Kristi';
+    src                 : url('../src/assets/fonts/Kristi.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'RalewayDots';
+    src                 : url('../src/assets/fonts/RalewayDots.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'ArchitectsDaughter';
+    src                 : url('../src/assets/fonts/ArchitectsDaughter.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'Megrim';
+    src                 : url('../src/assets/fonts/Megrim.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'SulphurPoint';
+    src                 : url('../src/assets/fonts/SulphurPoint.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'BadScript';
+    src                 : url('../src/assets/fonts/BadScript.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+/* @import url('https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap'); */
+@font-face {
+    font-family         : 'Nova Mono';
+    src                 : url('../src/assets/fonts/NovaMono.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'Thasadith';
+    src                 : url('../src/assets/fonts/Thasadith.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'DarkerGrotesque';
+    src                 : url('../src/assets/fonts/DarkerGrotesque.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'PetitFormalScript';
+    src                 : url('../src/assets/fonts/PetitFormalScript.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'DawningofaNewDay';
+    src                 : url('../src/assets/fonts/DawningofaNewDay.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'PoiretOne';
+    src                 : url('../src/assets/fonts/PoiretOne.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'far';
+    src                 : url('../src/assets/fonts/fa-regular-400.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'fas';
+    src                 : url('../src/assets/fonts/fa-solid-900.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+@font-face {
+    font-family         : 'Oswald';
+    src                 : url('../src/assets/fonts/Oswald-Light.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+}
+/* @font-face {
+    font-family         : 'Oswald';
+    src                 : url('../src/assets/fonts/Oswald.ttf') ;
+    font-weight         : normal;
+    font-style          : normal;
+} */
+
     /* font-family         : "KaushanScript"; */
     /* font-family         : "MuseoModerno"; */
     /* font-family         : "SpecialElite"; */
@@ -151,9 +243,21 @@
     /* font-family         : "ShadowsIntoLightTwo"; */
     /* font-family         : "Caveat"; */
     /* font-family         : "Oswald"; */
-    /* font-family         : "NovaMono"; */
+    /* font-family         : "Nova Mono"; */
     /* font-family         : "ComicNeue"; */
     /* font-family         : "Sriracha"; */
+
+    /* font-family         : "AllertaStencil"; */
+    /* font-family         : "Kristi"; */
+    /* font-family         : "RalewayDots"; */
+    /* font-family         : "ArchitectsDaughter"; */
+    /* font-family         : "Megrim"; */
+    /* font-family         : "SulphurPoint"; */
+    /* font-family         : "BadScript"; */
+    /* font-family         : "Thasadith"; */
+    /* font-family         : "DarkerGrotesque"; */
+    /* font-family         : "DawningofaNewDay"; */
+    /* font-family         : "PoiretOne"; */
 
 /*                                                                                       */
 
@@ -298,8 +402,14 @@ body {
     100%{ transform     : scale(1)         }
 }
 
+#topBox .appBox {
+    text-align          : center;
+    margin              : 0 .7vw;
+    width               : auto;
+}
+
 /* pulse for button */
-.appBox .pulse {
+#topBox  .appBox .pulse {
     animation           : pulseNormal .4s;
     animation-fill-mode : both;
 }

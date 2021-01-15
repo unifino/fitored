@@ -8,4 +8,4 @@ export enum MyProducts {
     "brochure"
 }
 
-export enum SlideAnimationState { "start" ,"up", "down", "stop" }
+export enum SlideAnimationState { "waiting", "start" ,"up", "down", "stop" }

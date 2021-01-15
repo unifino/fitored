@@ -3,8 +3,8 @@
 
     <BG />
     <Header />
-    <Options />
     <Screen />
+    <Options />
     <Footer />
 
 </div>

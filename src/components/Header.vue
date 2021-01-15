@@ -15,7 +15,6 @@
 <script lang="ts">
 
 import { defineComponent }              from "vue";
-import * as VX                          from "@/store/store";
 import Fitored                          from "@/components/Products/Fitored.vue"
 import Dora                             from "@/components/Products/Dora.vue"
 import NWord                            from "@/components/Products/NWord.vue"
