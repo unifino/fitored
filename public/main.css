@@ -235,7 +235,7 @@
     /* font-family         : "PoorStory"; */
     /* font-family         : "JosefinSlab"; */
     /* font-family         : "Raleway"; */
-    
+
     /* font-family         : "Rancho"; */
     /* font-family         : "BalooDa2"; */
     /* font-family         : "Krub"; */
@@ -308,7 +308,7 @@ body {
 .appIcon {
     width               : 4vw;
     margin              : auto;
-    height              : auto;
+    height              : 4vw;
     cursor              : pointer;
     display             : block;
 }

@@ -1,8 +1,9 @@
 <template>
 <div id="screen" ref="Screen" class="no_select">
 
-    <brochure />
+    <Brochure />
     <Canzone  />
+    <Contact  />
     <Dora     />
     <NWord    />
     <Website  />
@@ -20,6 +21,7 @@ import * as VX                          from "@/store/store";
 import * as TS                          from "@/types/types"
 import Brochure                         from "@/components/Slides/Brochure.vue"
 import Canzone                          from "@/components/Slides/Canzone.vue"
+import Contact                          from "@/components/Slides/Contact.vue"
 import Dora                             from "@/components/Slides/Dora.vue"
 import Fitored                          from "@/components/Slides/Fitored.vue"
 import NWord                            from "@/components/Slides/NWord.vue"
@@ -39,6 +41,7 @@ export default defineComponent ( {
     components: {
         Brochure,
         Canzone,
+        Contact,
         Dora,
         Fitored,
         NWord,
@@ -86,7 +89,7 @@ export default defineComponent ( {
             () => pulser( Screen ),
         );
 
-        return { Screen, Fitored, Brochure, Canzone, Dora, NWord, Website }
+        return { Screen }
 
     }
 

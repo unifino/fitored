@@ -5,7 +5,8 @@ export enum MyProducts {
     "n_word",
     "canzone",
     "website",
-    "brochure"
+    "brochure",
+    "contact"
 }
 
 export enum SlideAnimationState { "waiting", "start" ,"up", "down", "stop" }

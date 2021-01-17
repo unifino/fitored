@@ -45,8 +45,8 @@ export default defineComponent ( {
     text-align          : center;
     font-size           : 0.9vw;
     bottom              : 0;
-    right               : 7.2vw;
-    width               : 21vw;
+    right               : 2vw;
+    width               : 40vw;
     padding             : 1.2% 0%;
     position            : absolute;
     z-index             : -1;

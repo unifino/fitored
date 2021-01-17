@@ -1,12 +1,11 @@
 <template>
-<div id="panel" ref="panel" class="fadeIn">
-    <div class="optionBox"><i class="icon"></i><div class="title">Sign-in</div></div>
-    <div class="optionBox"><i class="icon"></i><div class="title">Tutorial</div></div>
-    <div class="optionBox"><i class="icon"></i><div class="title">Gallery</div></div>
-    <div class="optionBox"><i class="icon"></i><div class="title">Download</div></div>
-    <!-- <div class="option">contact</div> -->
-    <!-- <div class="option">about us</div> -->
-    <!-- <div class="option">settings</div> -->
+<div id="panelWrapper">
+    <div id="panel" ref="panel" class="fadeIn">
+        <div v-for="(opt,i) of options" :key=key+i class="optionBox">
+            <i class="icon">{{opt.icon}}</i>
+            <div :class="'title ' + opt.class">{{opt.title}}</div>
+        </div>
+    </div>
 </div>
 </template>
 
@@ -16,7 +15,7 @@
 
 import { defineComponent, ref }         from "vue";
 import * as VX                          from "@/store/store";
-import { SlideAnimationState }          from "@/types/types";
+import { MyProducts, SlideAnimationState }          from "@/types/types";
 
 // -- =====================================================================================
 
@@ -32,10 +31,52 @@ export default defineComponent ( {
 
         // eslint-disable-next-line
         const panel = ref<HTMLElement>( null as any );
+        const options =  ref ( [{}] );
+        const key = ref(0);
+
+        options.value = [
+            // { title: "Contact Us", class:"mTop", icon: "", }
+        ]
 
         const panelCtl = function ( state: SlideAnimationState ) {
+
             if ( state === SlideAnimationState.stop ) panel.value.className = "fadeIn";
+
             if ( state === SlideAnimationState.waiting ) panel.value.className = "fadeOut";
+
+            if ( state === SlideAnimationState.up ) {
+
+                // .. alter it by length of options
+                key.value += options.value.length || 4;
+
+                switch ( VX.store.getters.focusedOn ) {
+                    case MyProducts.fitored:
+                        options.value = [
+                            // { title: "Contact Us", class:"mTop", icon: "", }
+                        ];
+                        break;
+
+                    case MyProducts.dora:
+                        options.value = [
+                            { title: "Sign-in" , class:"", icon: "", },
+                            { title: "Tutorial", class:"", icon: "", },
+                            { title: "Gallery" , class:"", icon: "", },
+                            { title: "Download", class:"", icon: "", },
+                        ]
+                        break;
+
+                    case MyProducts.n_word:
+                        options.value = []
+                        break;
+
+                    case MyProducts.canzone:
+                        options.value = []
+                        break;
+
+                }
+
+            }
+
         }
 
         VX.store.watch(
@@ -43,7 +84,7 @@ export default defineComponent ( {
             newVal => panelCtl( newVal ),
         );
 
-        return { panel }
+        return { panel, options, key }
 
     }
 
@@ -61,54 +102,62 @@ export default defineComponent ( {
 
 /*                                                                                       */
 
-#panel {
-    bottom              : 7.9vw;
+#panelWrapper {
+    bottom              : 7vw;
     right               : 46vw;
-    height              : 22.5vw;
+    height              : 25vw;
+    padding             : 1.5vw 0;
     width               : 16vw;
     position            : absolute;
+    display             : flex;
+    align-items         : flex-end;
+}
+
+#panel {
+    width               : 100%;
+    min-height          : 5vw;
+    margin              : 2.5vw 0 0 0;
 }
 
 .optionBox {
+    margin              : .725vw 0;
     width               : 100%;
     float               : left;
-    margin-top          : 1.5vw;
     cursor              : pointer;
 }
 
 .title {
-    color               : #c5c5c5;
-    color               : #8d6f6f60;
-    width               :60%;
+    color               : #a09271;
+    width               : 60%;
     float               : left;
     font-size           : 1.36vw;
     font-weight         : bold;
     line-height         : 1.6vw;
     text-align          : right;
-    margin-top          : .43vw;
-    font-family         : "BadScript";
-    font-family         : "ComicNeue";
-    font-family         : "Thasadith";
-    font-family         : "Oswald";
+    margin-top          : .4vw;
     font-family         : "PoiretOne";
-    /* font-family         : "Nova Mono"; */
+    transition          : color 1s;
 }
 
-.optionBox:hover .title,
-.optionBox:hover .icon {
-    color               : #8d6f6f;
-    transition          : .4s;
+.mTop {
+    margin-top          : .8vw;
 }
 
 .icon {
+    color               : #916f26;
     font-family         : "fas";
     font-style          : normal;
     font-size           : 2.5vw;
     text-align          : center;
-    color               :#d1c40f;
-    color               :#d1770f;
     float               : right;
     width               : 40%;
+    transition          : color 1s;
+}
+
+.optionBox:hover .title,
+.optionBox:hover .icon {
+    color               : #0b8191;
+    transition          : .5s;
 }
 
 .fadeOut {
