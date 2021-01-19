@@ -259,7 +259,7 @@
     /* font-family         : "DawningofaNewDay"; */
     /* font-family         : "PoiretOne"; */
 
-/*                                                                                       */
+/* ------------------------------------------------------------------------------------- */
 
 * {
     font-family         : "Farsan";
@@ -281,55 +281,64 @@
     user-select: none;
 }
 
-/*                                                                                       */
+a {
+    text-decoration: none;
+}
+
+/* ------------------------------------------------------------------------------------- */
 
 body {
     background-color    : #032029;
     position            : fixed;
 }
 
-/*                                                                                       */
+/* ------------------------------------------------------------------------------------- */
 
-.trendName {
-    font-weight         : bold;
-    color               : #132025;
-}
-
-.underDev {
-    background-color    : rgb(22, 44, 41);
-    color               : rgb(129, 126, 124);
-    font-size           : .55em;
-    letter-spacing      : .1em;
-    font-family         : "Nova Mono";
-}
-
-/*                                                                                       */
-
-.appIcon {
+.desktop .optionBox {
+    font-size           : 3.5vw;
+    margin              : 0 .4vw;
     width               : 4vw;
-    margin              : auto;
-    height              : 4vw;
+} 
+
+.mobile .optionBox {
+    font-size           : 14vw;
+    margin              : 0 1vw;
+    width               : 15vw;
+}
+
+.optionIcon {
+    width               : 100%;
+    margin              : 0;
+    height              : auto;
     cursor              : pointer;
     display             : block;
 }
 
-.appTitle{
+.optionTitle{
     color               : #b4b4b4;
-    font-size           : 1.1vw;
     display             : block;
-    padding-top         : .2vw;
-    margin-bottom       : -1.6vw;
+    padding-top         : .4em;
+    margin-bottom       : -.4em;
+    height              : 0;
     font-family         : "Farsan";
-
 }
 
-/*                                                                                       */
+.desktop .optionTitle {
+    font-size           : 1.1vw;
+}
+
+.mobile .optionTitle {
+    font-size           : .3em;
+}
+
+
+/* ------------------------------------------------------------------------------------- */
 
 .slide {
     background-color    : #161b20;
     height              : 100%;
     width               : 100%;
-    border-radius       : .8vw;
+    border-radius       : .7em;
     overflow            : hidden;
     position            : absolute;
     z-index             : 0;
@@ -360,15 +369,36 @@ body {
 
 .slide .content {
     color               : whitesmoke;
-    font-size           : 1.14vw;
-    line-height         : 1.9vw;
-    padding             : 0 3.5vw 1vw 3.5vw;
     text-align          : justify;
+}
+
+.desktop .slide .content { 
+    padding             : 0 3vw 1.5vw 3vw;
+    font-size           : 1vw;
+    line-height         : 1.6vw;
+}
+
+.mobile .slide .content { 
+    padding             : 0 2.5em 1.5em 2.5em;
+    font-size           : .9em;
+    line-height         : 1.6em;
+}
+
+/* ------------------------------------------------------------------------------------- */
+
+.underDev {
+    background-color    : rgb(22, 44, 41);
+    color               : rgb(129, 126, 124);
+    font-size           : .55em;
+    letter-spacing      : .1em;
+    font-family         : "Nova Mono";
 }
 
 .slide .trendName {
     color               : red;
 }
+
+/* ------------------------------------------------------------------------------------- */
 
 .slideUp {
     animation           : slideUp .25s ease-out;
@@ -390,7 +420,8 @@ body {
     100%{ transform     : translateY(0)         }
 }
 
-/* pulse for screen */
+/* ------------------------------------------------------------ pulse for screen ------- */
+
 .pulse {
     animation           : pulseSmall .4s;
     animation-fill-mode : both;
@@ -402,26 +433,15 @@ body {
     100%{ transform     : scale(1)         }
 }
 
-#topBox .appBox {
-    text-align          : center;
-    margin              : 0 .7vw;
-    width               : auto;
-}
-
-/* pulse for button */
-#topBox  .appBox .pulse {
-    animation           : pulseNormal .4s;
-    animation-fill-mode : both;
-}
-
 @keyframes pulseNormal {
     0%  { transform     : scale(1)         }
     50% { transform     : scale(1.085)     }
     100%{ transform     : scale(1)         }
 }
 
-/* pulse for LOGO */
-.logoBox .pulse {
+/* -------------------------------------------------------------- pulse for LOGO ------- */
+
+#logoBox .pulse {
     animation           : pulseMiddle .4s;
     animation-fill-mode : both;
 }

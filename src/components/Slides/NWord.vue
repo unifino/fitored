@@ -30,19 +30,29 @@ export default defineComponent ( {
 
     setup () {
 
+// -- =====================================================================================
+
         const product = TS.MyProducts.n_word;
+        // eslint-disable-next-line
         const Slide = ref<HTMLElement>( null as any );
+
+// -- =====================================================================================
+
         const { slideAnimator } = Mixin();
 
         const context = `
             <p>n-Word is a new flashCard application, it provides many functions to capture and practice information that you need.</p>
 
-            <span class="underDev">&nbsp;n-Word is still under development!&nbsp;</span>`;
+            <span class="underDev">&nbsp;Under development!&nbsp;</span>`;
+
+// -- =====================================================================================
 
         VX.store.watch(
             getters => getters.slideState, 
             newVal => slideAnimator( newVal, product, Slide ),
         );
+
+// -- =====================================================================================
 
         return { Slide, context }
 

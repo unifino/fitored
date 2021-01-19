@@ -44,7 +44,14 @@ export default defineComponent ( {
     bottom              : 0;
     position            : absolute;
     z-index             : -1;
+}
 
+.desktop #beauty {
+    visibility          : visible;
+}
+
+.mobile #beauty {
+    visibility          : hidden;
 }
 
 </style>

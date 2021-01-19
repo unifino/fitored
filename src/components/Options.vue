@@ -1,7 +1,7 @@
 <template>
 <div id="panelWrapper">
     <div id="panel" ref="panel" class="fadeIn">
-        <div v-for="(opt,i) of options" :key=key+i class="optionBox">
+        <div v-for="(opt,i) of options" :key=key+i class="optBox">
             <i class="icon">{{opt.icon}}</i>
             <div :class="'title ' + opt.class">{{opt.title}}</div>
         </div>
@@ -34,10 +34,6 @@ export default defineComponent ( {
         const options =  ref ( [{}] );
         const key = ref(0);
 
-        options.value = [
-            // { title: "Contact Us", class:"mTop", icon: "", }
-        ]
-
         const panelCtl = function ( state: SlideAnimationState ) {
 
             if ( state === SlideAnimationState.stop ) panel.value.className = "fadeIn";
@@ -50,11 +46,6 @@ export default defineComponent ( {
                 key.value += options.value.length || 4;
 
                 switch ( VX.store.getters.focusedOn ) {
-                    case MyProducts.fitored:
-                        options.value = [
-                            // { title: "Contact Us", class:"mTop", icon: "", }
-                        ];
-                        break;
 
                     case MyProducts.dora:
                         options.value = [
@@ -65,11 +56,7 @@ export default defineComponent ( {
                         ]
                         break;
 
-                    case MyProducts.n_word:
-                        options.value = []
-                        break;
-
-                    case MyProducts.canzone:
+                    default:
                         options.value = []
                         break;
 
@@ -119,7 +106,7 @@ export default defineComponent ( {
     margin              : 2.5vw 0 0 0;
 }
 
-.optionBox {
+.optBox {
     margin              : .725vw 0;
     width               : 100%;
     float               : left;
@@ -154,8 +141,8 @@ export default defineComponent ( {
     transition          : color 1s;
 }
 
-.optionBox:hover .title,
-.optionBox:hover .icon {
+.optBox:hover .title,
+.optBox:hover .icon {
     color               : #0b8191;
     transition          : .5s;
 }

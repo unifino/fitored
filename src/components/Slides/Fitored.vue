@@ -30,20 +30,29 @@ export default defineComponent ( {
 
     setup () {
 
+// -- =====================================================================================
+
         const product = TS.MyProducts.fitored;
         // eslint-disable-next-line
         const Slide = ref<HTMLElement>( null as any );
+
+// -- =====================================================================================
+
         const { slideAnimator } = Mixin();
 
         const context = `
             <p><span class="trendName">Fitored Design & Software Development</span> is an innovative Graphical and Software Developing company,
             that aims to make digital world nicer.</p>
-            Our services includes Designing Brochures, Websites, Apps, ...`;
+            Our services includes Designing Brochures, Websites & Apps.`;
+
+// -- =====================================================================================
 
         VX.store.watch(
             getters => getters.slideState, 
             newVal => slideAnimator( newVal, product, Slide ),
         );
+
+// -- =====================================================================================
 
         return { Slide, context }
 

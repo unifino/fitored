@@ -17,8 +17,8 @@
 <script lang="ts">
 
 import { defineComponent, ref }         from "vue";
-import * as VX                          from "@/store/store";
 import * as TS                          from "@/types/types"
+import * as VX                          from "@/store/store";
 import Brochure                         from "@/components/Slides/Brochure.vue"
 import Canzone                          from "@/components/Slides/Canzone.vue"
 import Contact                          from "@/components/Slides/Contact.vue"
@@ -52,15 +52,25 @@ export default defineComponent ( {
 
     setup () {
 
+// -- =====================================================================================
+
+        // eslint-disable-next-line
         const Screen = ref<HTMLElement>( null as any );
+
+// -- =====================================================================================
+
         const { pulser } = Mixin();
+
+// -- =====================================================================================
 
         const bounce = function ( state: "minimize" | "maximize" ) {
             Screen.value.className = "no_select ";
             Screen.value.className += state;
         }
 
-        const slider = async function ( x: TS.MyProducts ) {
+// -- =====================================================================================
+
+        const slider = async function () {
             // .. register beginning of animation
             VX.store.dispatch( VX.Acts.slideState, TS.SlideAnimationState.waiting );
             // .. minimizing
@@ -79,15 +89,19 @@ export default defineComponent ( {
             VX.store.dispatch( VX.Acts.slideState, TS.SlideAnimationState.stop );
         }
 
+// -- =====================================================================================
+
         VX.store.watch(
             getters => getters.focusedOn,
-            newVal => slider( newVal ),
+            () => slider(),
         );
 
         VX.store.watch(
             getters => getters.pulse,
             () => pulser( Screen ),
         );
+
+// -- =====================================================================================
 
         return { Screen }
 
@@ -108,12 +122,21 @@ export default defineComponent ( {
 /*                                                                                       */
 
 #screen {
-    width               : 40vw;
-    height              : 28vw;
     right               : 5vw;
-    bottom              : 7vw;
     box-shadow          : 0 0 4em 0 #02090f;
     position            : absolute;
+}
+
+.desktop #screen {
+    height              : 28vw;
+    width               : 40vw;
+    bottom              : 6.5vw;
+}
+
+.mobile #screen {
+    height              : 63vw;
+    width               : 90vw;
+    bottom              : 15vw;
 }
 
 .minimize {

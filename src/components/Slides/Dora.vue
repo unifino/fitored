@@ -30,18 +30,28 @@ export default defineComponent ( {
 
     setup () {
 
+// -- =====================================================================================
+
         const product = TS.MyProducts.dora;
+        // eslint-disable-next-line
         const Slide = ref<HTMLElement>( null as any );
+
+// -- =====================================================================================
+
         const { slideAnimator } = Mixin();
 
         const context = `
             <p>Dora is a powerful language learning application, that helps you keep traces of what you've already learned.</p>
             <p>Types of available lesson is vary from text based with audios, video, comics, ..., and you can sort them by level that appropriates for you.</p>`;
 
+// -- =====================================================================================
+
         VX.store.watch(
             getters => getters.slideState, 
             newVal => slideAnimator( newVal, product, Slide ),
         );
+
+// -- =====================================================================================
 
         return { Slide, context }
 

@@ -43,13 +43,22 @@ export default defineComponent ( {
     color               : #636363;
     font-family         : "Nova Mono";
     text-align          : center;
-    font-size           : 0.9vw;
-    bottom              : 0;
-    right               : 2vw;
-    width               : 40vw;
-    padding             : 1.2% 0%;
+    right               : 0;
     position            : absolute;
     z-index             : -1;
+}
+
+.desktop #footer {
+    bottom              : .1vw;
+    padding             : 1.2% 0%;
+    width               : 44vw;
+    font-size           : 0.9vw;
+}
+
+.mobile #footer {
+    bottom              : 4.5vw;
+    width               : 85.5vw;
+    font-size           : 2.5vw;
 }
 
 .copyRight {

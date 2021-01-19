@@ -1,9 +1,9 @@
 <template>
-<div class="appBox" v-on:click="click()">
-    <div class="appIcon" ref="butt">
-        <i class="icon"></i>
+<div class="optionBox" v-on:click="click()">
+    <div class="optionIcon" ref="butt">
+        <i class="awesome"></i>
     </div>
-    <div class="appTitle">Contact Us</div>
+    <div class="optionTitle">Contact Us</div>
 </div>
 </template>
 
@@ -27,15 +27,25 @@ export default defineComponent ( {
 
     setup () {
 
-        const { me, pulser } = Mixin();
+// -- =====================================================================================
 
         const product = TS.MyProducts.contact;
+
+        // eslint-disable-next-line
         const butt = ref<HTMLElement>( null as any );
+
+// -- =====================================================================================
+
+        const { me, pulser } = Mixin();
+
+// -- =====================================================================================
 
         const click = function () {
             pulser( butt );
             me( product );
         }
+
+// -- =====================================================================================
 
         return { butt, click }
 
@@ -55,15 +65,21 @@ export default defineComponent ( {
 
 /*                                                                                       */
 
-.appBox {
-    height: 4vw;
+.optionIcon {
+    line-height         : 4vw;
+    height              : 4vw;
 }
 
-.icon {
+.mobile .optionTitle {
+    /* padding-top              : 10vw; */
+    padding-top         : 1.7em;
+    margin-bottom       : -1.7em;
+}
+
+.awesome {
     color               : #be8a1a;
     font-family         : "fas";
     font-style          : normal;
-    font-size           : 3.5vw;
     text-align          : center;
 }
 

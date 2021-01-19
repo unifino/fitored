@@ -1,13 +1,19 @@
 <template>
-<div id="topBox" class="no_select">
+<div id="headerBox" class="no_select">
+
+    <div style="margin: 0 1.5em" />
 
     <Fitored />
-    <div style="margin-right: 3vw" />
-    <Dora />
-    <NWord />
-    <Canzone />
-    <div class="space"></div>
-    <Contact />
+
+    <div style="margin: 3em 0" />
+
+    <div id="optionsBigBox">
+        <Dora />
+        <NWord />
+        <Canzone />
+        <div class="divider"></div>
+        <Contact />
+    </div>
 
 </div>
 </template>
@@ -16,7 +22,9 @@
 
 <script lang="ts">
 
-import { defineComponent }              from "vue";
+import { defineComponent, onMounted, ref }              from "vue";
+import * as TS                          from "@/types/types"
+import * as VX                          from "@/store/store";
 import Fitored                          from "@/components/Products/Fitored.vue"
 import Dora                             from "@/components/Products/Dora.vue"
 import NWord                            from "@/components/Products/NWord.vue"
@@ -53,21 +61,45 @@ export default defineComponent ( {
 
 <style scoped>
 
-#topBox {
+#headerBox {
     float               : left;
-    margin-top          : 4.5%;
-    margin-left         : 5%;
+    width               : 100vw;
+    text-align          : center;
+    justify-content     : left;
+    align-items         : center;
+}
+
+.desktop #headerBox {
+    margin-top          : 4.3em;
+    display             : flex;
+}
+
+.mobile #headerBox {
+    margin-top          : 2.5em;
+    display             : block;
+}
+
+#optionsBigBox {
     display             : flex;
     justify-content     : center;
     align-items         : center;
 }
 
-.space{ 
+.divider{ 
     background-color    : red;
-    height              : 5vw;
+    border-radius       : 100vw;
+}
+
+.desktop .divider {
+    height              : 4.5vw;
     width               : .1vw;
-    border-radius       : 10vw;
-    margin              : 1vw 2vw 0 2vw;
+    margin              : 1vw 2vw 0vw 2vw;
+}
+
+.mobile .divider {
+    height              : 17vw;
+    width               : .5vw;
+    margin              : 1.5vw 5vw -3.5vw 5vw;
 }
 
 </style>

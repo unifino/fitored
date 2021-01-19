@@ -1,6 +1,12 @@
 <template>
-<div class="logoBox"  v-on:click="click()">
-    <img class="logo no_select" src="@/assets/pic/logo.png" ref="butt" />
+<div id="logoBox">
+    <img 
+        id="logo"
+        class="no_select" 
+        ref="butt"
+        src="@/assets/pic/logo.png" 
+        v-on:click="click()"
+    />
 </div>
 </template>
 
@@ -24,15 +30,25 @@ export default defineComponent ( {
 
     setup () {
 
-        const { me, pulser } = Mixin();
+// -- =====================================================================================
 
         const product = TS.MyProducts.fitored;
+
+        // eslint-disable-next-line
         const butt = ref<HTMLElement>( null as any );
-        
+
+// -- =====================================================================================
+
+        const { me, pulser } = Mixin();
+
+// -- =====================================================================================
+
         const click = function () {
             pulser( butt );
             me( product );
         }
+
+// -- =====================================================================================
 
         return { butt, click }
 
@@ -52,17 +68,27 @@ export default defineComponent ( {
 
 /*                                                                                       */
 
-.logo {
+.desktop #logoBox {
+    height              : 7vw;
+    width               : 14%;
+}
+
+.mobile #logoBox {
+    height              : 25vw;
+    width               : 100%;
+}
+
+#logo {
+    width               : auto;
+    height              : 100%;
     background-color    : #03171b;
-    border-radius       : 100px;
-    width               : 7vw;
-    box-shadow          : 0 0 10px 1px #213f4d;
+    border-radius       : 100em;
+    box-shadow          : 0 0 1em .1em #213f4d;
     cursor              : pointer;
-    float               : left;
 }
 
 #logo:hover {
-    box-shadow          : 0 0 7px 0px #213f4d;
+    box-shadow          : 0 0 .7em 0 #213f4d;
 }
 
 /*                                                                                       */

@@ -30,20 +30,30 @@ export default defineComponent ( {
 
     setup () {
 
+// -- =====================================================================================
+
         const product = TS.MyProducts.canzone;
+        // eslint-disable-next-line
         const Slide = ref<HTMLElement>( null as any );
+
+// -- =====================================================================================
+
         const { slideAnimator } = Mixin();
-    
+
         const context = `
             <p>Canzone is our Music Player Application.
             Our aim on designing it is simplicity anf functionality.</p>
 
-            <span class='underDev'>&nbsp;Canzone is still under development!&nbsp;</span>`;
+            <span class='underDev'>&nbsp;Under development!&nbsp;</span>`;
+
+// -- =====================================================================================
 
         VX.store.watch(
             getters => getters.slideState, 
             newVal => slideAnimator( newVal, product, Slide ),
         );
+
+// -- =====================================================================================
 
         return { Slide, context }
 

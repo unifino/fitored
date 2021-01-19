@@ -1,7 +1,7 @@
 <template>
-<div class="appBox" v-on:click="click()">
-    <img class="appIcon" src="@/assets/pic/n_word.png" ref="butt" />
-    <div class="appTitle">n_Word</div>
+<div class="optionBox" v-on:click="click()">
+    <img class="optionIcon" src="@/assets/pic/n_word.png" ref="butt" />
+    <div class="optionTitle">n_Word</div>
 </div>
 </template>
 
@@ -25,15 +25,25 @@ export default defineComponent ( {
 
     setup () {
 
-        const { me, pulser } = Mixin();
+// -- =====================================================================================
 
         const product = TS.MyProducts.n_word;
+
+        // eslint-disable-next-line
         const butt = ref<HTMLElement>( null as any );
-        
+
+// -- =====================================================================================
+
+        const { me, pulser } = Mixin();
+
+// -- =====================================================================================
+
         const click = function () {
             pulser( butt );
             me( product );
         }
+
+// -- =====================================================================================
 
         return { butt, click }
 

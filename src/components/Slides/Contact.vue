@@ -5,7 +5,7 @@
     <img src="@/assets/pic/b_r_01.jpg" class="column right" />
 
     <div class="column center">
-        <div id="contactOptionsBox">
+        <div>
 
             <a href="https://t.me/aa_zz_001" target="blank">
                 <div class="contactOption">
@@ -54,14 +54,24 @@ export default defineComponent ( {
 
     setup () {
 
+// -- =====================================================================================
+
         const product = TS.MyProducts.contact;
+        // eslint-disable-next-line
         const Slide = ref<HTMLElement>( null as any );
+
+// -- =====================================================================================
+
         const { slideAnimator } = Mixin();
+
+// -- =====================================================================================
 
         VX.store.watch(
             getters => getters.slideState, 
             newVal => slideAnimator( newVal, product, Slide ),
         );
+
+// -- =====================================================================================
 
         return { Slide }
 
@@ -81,39 +91,47 @@ export default defineComponent ( {
 
 /*                                                                                       */
 
-#contactOptionsBox {
-    width               : 10vw;
-}
-
 .contactOption {
-    width               : 100%;
-    margin              : .5vw 0;
-    padding             : .3vw;
-    float               : left;
+    display             : flex;
+    align-items         : center;
+    justify-content     : center;
     cursor              : pointer;
 }
 
 .contactOption:hover{
     background-color    : rgba(54, 43, 33, 0.247);
-    border-radius       : .5vw;
+    border-radius       : .5em;
 }
 
-.icon {
-    width               : 3vw;
-    height              : 3vw;
-    float               : left;
+.desktop .icon {
+    width               : 3.8em;
+    height              : 3.8em;
+    margin              : .7em 1.3em .7em .5em;
+}
+
+.mobile .icon {
+    width               : 3em;
+    height              : 3em;
+    margin              : .7em 1em;
 }
 
 .title {
     display             : flex;
     justify-content     : left;
     align-items         : center;
-    color               :seashell;
-    height              : 3vw;
-    width               : 55%;
-    float               : right;
-    font-size           : 1.2vw;
+    color               : rgb(207, 206, 205);
+    height              : 3em;
+    width               : 5em;
     font-family         : "PoiretOne";
+    font-weight         : bold;
+}
+
+.desktop .title {
+    font-size           : 1.3em;
+}
+
+.mobile .title {
+    font-size           : 1.2em;
 }
 
 /*                                                                                       */

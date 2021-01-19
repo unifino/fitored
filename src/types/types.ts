@@ -10,3 +10,5 @@ export enum MyProducts {
 }
 
 export enum SlideAnimationState { "waiting", "start" ,"up", "down", "stop" }
+
+export enum clientDeviceType { "desktop", "mobile" }

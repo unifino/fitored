@@ -30,18 +30,28 @@ export default defineComponent ( {
 
     setup () {
 
+// -- =====================================================================================
+
         const product = TS.MyProducts.brochure;
+        // eslint-disable-next-line
         const Slide = ref<HTMLElement>( null as any );
+
+// -- =====================================================================================
+
         const { slideAnimator } = Mixin();
 
         const context = `
             <p><span class="trendName">Fitored</span> Designs elegant Brochures and E-Flyers upon demands of its customers.</p>
             <p>You can make a request for your projects.</p>`;
 
+// -- =====================================================================================
+
         VX.store.watch(
             getters => getters.slideState, 
             newVal => slideAnimator( newVal, product, Slide ),
         );
+
+// -- =====================================================================================
 
         return { Slide, context }
 

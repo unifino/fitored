@@ -47,37 +47,42 @@ type State = {
     focusedOn: TS.MyProducts;
     slideState: TS.SlideAnimationState;
     pulse: boolean;
+    clientDevice: TS.clientDeviceType;
 }
 
 // .. define  State
 const state: State = {
-    focusedOn: TS.MyProducts.fitored,
-    slideState: TS.SlideAnimationState.stop,
-    pulse: false,
+    focusedOn       : TS.MyProducts.fitored,
+    slideState      : TS.SlideAnimationState.stop,
+    pulse           : false,
+    clientDevice    : TS.clientDeviceType.mobile
 }
 
 // -- =================================================================== Mutations =======
 
 // .. declare Mutation-Options
 enum Mutates {
-    newFocus = "SET_newProduct_on_focus",
-    slideState = "SET_slideState",
-    pulse = "pulse",
+    newFocus        = "SET_newProduct_on_focus",
+    slideState      = "SET_slideState",
+    pulse           = "pulse",
+    clientDevice    = "SET_clientDevice"
 }
 
 // .. declare Mutations
 type MyMutations<S = State> = {
-    [ Mutates.newFocus ] ( state: S, payload: TS.MyProducts ): void;
-    [ Mutates.slideState ] ( state: S, payload: TS.SlideAnimationState ): void;
-    [ Mutates.pulse ] ( state: S ): void;
+    [ Mutates.newFocus ]    ( state: S, payload: TS.MyProducts ): void;
+    [ Mutates.slideState ]  ( state: S, payload: TS.SlideAnimationState ): void;
+    [ Mutates.pulse ]       ( state: S ): void;
+    [ Mutates.clientDevice ]( state: S, payload: TS.clientDeviceType ): void;
 }
 
 // .. define Mutations 
 const mutations: MutationTree<State> & MyMutations = {
 
-    [ Mutates.newFocus ] ( state, payload ) { state.focusedOn = payload },
-    [ Mutates.slideState ] ( state, payload ) { state.slideState = payload },
-    [ Mutates.pulse ] ( state ) { state.pulse = !state.pulse },
+    [ Mutates.newFocus ]    ( state, payload ) { state.focusedOn = payload },
+    [ Mutates.slideState ]  ( state, payload ) { state.slideState = payload },
+    [ Mutates.pulse ]       ( state ) { state.pulse = !state.pulse },
+    [ Mutates.clientDevice ]( state, payload ) { state.clientDevice = payload },
 
 }
 
@@ -85,16 +90,18 @@ const mutations: MutationTree<State> & MyMutations = {
 
 // .. declare Action-Options
 export enum Acts {
-    newFocus = "SET_newProduct_on_focus",
-    slideState = "SET_slideState",
-    pulse = "pulse",
+    newFocus    = "SET_newProduct_on_focus",
+    slideState  = "SET_slideState",
+    pulse       = "pulse",
+    clientDevice= "SET_clientDevice"
 }
 
 // .. declare Action Interface
 interface MyActions {
-    [ Acts.newFocus ] ( {commit}: AAC, payload: TS.MyProducts ): void;
-    [ Acts.slideState ] ( {commit}: AAC, payload: TS.SlideAnimationState ): void;
-    [ Acts.pulse ] ( {commit}: AAC ): void;
+    [ Acts.newFocus ]       ( {commit}: AAC, payload: TS.MyProducts ): void;
+    [ Acts.slideState ]     ( {commit}: AAC, payload: TS.SlideAnimationState ): void;
+    [ Acts.pulse ]          ( {commit}: AAC ): void;
+    [ Acts.clientDevice ]   ( {commit}: AAC, payload: TS.clientDeviceType ): void;
 }
 
 // .. define Actions
@@ -109,24 +116,28 @@ const actions: ActionTree<State, State> & MyActions = {
     // .. pulse
     [ Acts.pulse ] ( {commit} ) { commit( Mutates.pulse ) },
 
+    // .. set ClientDeviceType
+    [ Acts.clientDevice ] ( {commit}, device ) { commit( Mutates.clientDevice, device ) },
+
 }
 
 // -- ===================================================================== Getters =======
 
 // .. declare Getters Options
 type MyGetters = {
-    focusedOn( state: State ): TS.MyProducts;
-    slideState( state: State ): TS.SlideAnimationState;
-    pulse( state: State ): boolean;
+    focusedOn   ( state: State ): TS.MyProducts;
+    slideState  ( state: State ): TS.SlideAnimationState;
+    pulse       ( state: State ): boolean;
+    clientDevice( state: State ): TS.clientDeviceType;
 }
 
 // .. define Getters
 const getters: GetterTree<State, State> & MyGetters = {
-    focusedOn: state => state.focusedOn,
-    slideState: state => state.slideState,
-    pulse: state => state.pulse,
+    focusedOn   : state => state.focusedOn,
+    slideState  : state => state.slideState,
+    pulse       : state => state.pulse,
+    clientDevice: state => state.clientDevice,
 }
-
 
 // -- ======================================================================= Setup =======
 

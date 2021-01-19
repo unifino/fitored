@@ -1,7 +1,7 @@
 <template>
-<div class="appBox" v-on:click="click()">
-    <img class="appIcon" src="@/assets/pic/canzone.png" ref="butt" />
-    <div class="appTitle">Canzone</div>
+<div class="optionBox" v-on:click="click()">
+    <img class="optionIcon" src="@/assets/pic/canzone.png" ref="butt" />
+    <div class="optionTitle">Canzone</div>
 </div>
 </template>
 
@@ -25,15 +25,25 @@ export default defineComponent ( {
 
     setup () {
 
-        const { me, pulser } = Mixin();
+// -- =====================================================================================
 
         const product = TS.MyProducts.canzone;
+
+        // eslint-disable-next-line
         const butt = ref<HTMLElement>( null as any );
-        
+
+// -- =====================================================================================
+
+        const { me, pulser } = Mixin();
+
+// -- =====================================================================================
+
         const click = function () {
             pulser( butt );
             me( product );
         }
+
+// -- =====================================================================================
 
         return { butt, click }
 
