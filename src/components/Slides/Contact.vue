@@ -56,9 +56,8 @@ export default defineComponent ( {
 
 // -- =====================================================================================
 
-        const product = TS.MyProducts.contact;
-        // eslint-disable-next-line
-        const Slide = ref<HTMLElement>( null as any );
+        const product = TS.MyProducts.contact
+        const Slide = ref<HTMLElement>( {} as HTMLElement )
 
 // -- =====================================================================================
 

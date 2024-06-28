@@ -29,8 +29,7 @@ export default defineComponent ( {
 
     setup () {
 
-        // eslint-disable-next-line
-        const panel = ref<HTMLElement>( null as any );
+        const panel = ref<HTMLElement>( {} as HTMLElement );
         const options =  ref ( [{}] );
         const key = ref(0);
 

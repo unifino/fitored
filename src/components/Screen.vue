@@ -54,8 +54,7 @@ export default defineComponent ( {
 
 // -- =====================================================================================
 
-        // eslint-disable-next-line
-        const Screen = ref<HTMLElement>( null as any );
+        const Screen = ref<HTMLElement>( {} as HTMLElement );
 
 // -- =====================================================================================
 

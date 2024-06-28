@@ -32,9 +32,8 @@ export default defineComponent ( {
 
 // -- =====================================================================================
 
-        const product = TS.MyProducts.canzone;
-        // eslint-disable-next-line
-        const Slide = ref<HTMLElement>( null as any );
+        const product = TS.MyProducts.canzone
+        const Slide = ref<HTMLElement>( {} as HTMLElement )
 
 // -- =====================================================================================
 

@@ -30,9 +30,7 @@ export default defineComponent ( {
 // -- =====================================================================================
 
         const product = TS.MyProducts.contact;
-
-        // eslint-disable-next-line
-        const butt = ref<HTMLElement>( null as any );
+        const butt = ref<HTMLElement>( {} as HTMLElement );
 
 // -- =====================================================================================
 

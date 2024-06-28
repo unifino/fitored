@@ -27,10 +27,8 @@ export default defineComponent ( {
 
 // -- =====================================================================================
 
-        const product = TS.MyProducts.n_word;
-
-        // eslint-disable-next-line
-        const butt = ref<HTMLElement>( null as any );
+        const product = TS.MyProducts.n_word
+        const butt = ref<HTMLElement>( {} as HTMLElement )
 
 // -- =====================================================================================
 
