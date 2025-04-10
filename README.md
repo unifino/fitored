@@ -2,6 +2,7 @@ USE THIS COMMMIT : 4fcf4208b73efc9664cb62dbfeeb935d9cf1f824
 npm -v = 6.14.18
 node -v = v16.18.0
 
+```
   873  npm install webpack@4 webpack-cli@4
   876  npm install css-loader@^3.0.0 webpack@^4.0.0
   877  npm audit fix
@@ -13,7 +14,7 @@ node -v = v16.18.0
   891  npm install vue@^3.0.0 --save
   892  npx update-browserslist-db@latest
   893  npx browserslist@latest --update-db
-
+```
 
 # fitored
 
